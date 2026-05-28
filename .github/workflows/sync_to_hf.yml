@@ -11,7 +11,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true
 
       - name: Push to HuggingFace Space
         env:
@@ -19,4 +18,5 @@ jobs:
         run: |
           git config --global user.email "kmj9573@jbnu.ac.kr"
           git config --global user.name "kmj95731-ux"
-          git push https://minjin1:${HF_TOKEN}@huggingface.co/spaces/minjin1/mbti master:main --force
+          git remote add hf https://minjin1:$HF_TOKEN@huggingface.co/spaces/minjin1/mbti
+          git push hf HEAD:main --force
