@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBTI Book Talk — 같은 MBTI끼리 나누는 책이야기</title>
+  <meta name="description" content="MBTI 성격 유형별 도서 추천 커뮤니티. 같은 유형끼리 책을 추천하고 이야기해요.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F9F9F1;--white:#fff;--dark:#2C2C2C;--gray:#888;--light:#F0F0E8;
+  --green:#8DC487;--green-d:#6BAD65;
+  --yellow:#FFB830;--yellow-d:#E8A020;
+  --orange:#FF7043;--purple:#9C6FDE;--pink:#FF6B9D;
+  --radius:18px;--radius-lg:26px;--radius-xl:50px;
+  --shadow:0 4px 18px rgba(0,0,0,.10);--shadow-sm:0 2px 8px rgba(0,0,0,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{border:none;cursor:pointer;font-family:inherit;background:none}
+img{max-width:100%}
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--white);box-shadow:var(--shadow-sm);
+  padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.header-logo{font-family:'Black Han Sans',sans-serif;font-size:1.3rem;display:flex;gap:3px;align-items:center}
+.logo-m{color:var(--dark)}.logo-b{color:var(--orange)}.logo-t{color:var(--purple)}
+.header-back{font-size:1.4rem;padding:4px 10px;border-radius:8px;color:var(--dark);transition:background .15s}
+.header-back:hover{background:var(--light)}
+.header-right{min-width:40px;display:flex;align-items:center;justify-content:flex-end}
+.online-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#F0FFF4;border:1.5px solid #C8E6C9;border-radius:20px;
+  padding:4px 10px;font-size:.72rem;font-weight:700;color:#2E7D32;white-space:nowrap;
+}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#43A047;animation:pulse 1.5s ease-in-out infinite;flex-shrink:0}
+
+/* ── PAGE WRAPPER ── */
+.page{display:none;animation:fadeIn .22s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.inner{max-width:480px;margin:0 auto;padding:24px 20px 48px}
+
+/* ── LANDING ── */
+.landing-wrap{
+  max-width:420px;margin:0 auto;min-height:calc(100vh - 60px);
+  display:flex;flex-direction:column;align-items:center;
+  padding:52px 28px 40px;position:relative;overflow:hidden;
+}
+.deco-shape{position:absolute;border-radius:50%;opacity:.18;pointer-events:none}
+.shape-1{width:120px;height:120px;background:var(--yellow);top:-30px;right:-30px}
+.shape-2{width:80px;height:80px;background:var(--green);bottom:200px;left:-20px}
+.shape-3{width:60px;height:60px;background:var(--purple);top:160px;right:10px}
+.shape-4{width:100px;height:100px;background:var(--orange);bottom:80px;right:-20px}
+
+.logo-area{text-align:center;margin-bottom:8px;position:relative;z-index:1}
+.logo-mbti{font-family:'Black Han Sans',sans-serif;font-size:3.4rem;color:var(--dark);display:block;letter-spacing:6px}
+.logo-booktalk{display:flex;justify-content:center;gap:10px;margin-top:-6px}
+.logo-book{font-family:'Black Han Sans',sans-serif;font-size:3.1rem;color:var(--orange)}
+.logo-talk{font-family:'Black Han Sans',sans-serif;font-size:3.1rem;color:var(--purple)}
+
+.subtitle-banner{
+  background:var(--yellow);color:var(--white);font-weight:700;font-size:.97rem;
+  padding:10px 28px;border-radius:var(--radius-xl);margin:18px 0 34px;
+  box-shadow:0 4px 14px rgba(255,184,48,.4);position:relative;z-index:1;
+}
+.btn-bubble{
+  background:var(--white);border-radius:var(--radius-lg);
+  border:3px solid var(--dark);padding:26px 22px;width:100%;
+  display:flex;flex-direction:column;gap:14px;
+  position:relative;z-index:1;box-shadow:7px 7px 0 var(--dark);
+}
+.btn-bubble::after{
+  content:'';position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);
+  border:14px solid transparent;border-top-color:var(--dark);
+}
+.btn-bubble::before{
+  content:'';position:absolute;bottom:-19px;left:50%;transform:translateX(-50%);
+  border:11px solid transparent;border-top-color:var(--white);z-index:1;
+}
+.main-btn{
+  display:flex;align-items:center;gap:14px;padding:18px 22px;
+  border-radius:var(--radius-xl);font-weight:700;font-size:1.04rem;
+  color:var(--white);box-shadow:0 4px 14px rgba(0,0,0,.14);
+  transition:transform .15s,box-shadow .15s;cursor:pointer;
+}
+.main-btn:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.btn-green{background:var(--green)}.btn-yellow{background:var(--yellow)}
+.btn-icon{
+  width:46px;height:46px;background:rgba(255,255,255,.28);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;
+}
+.btn-text{flex:1;line-height:1.4}
+.btn-line1{display:block;font-size:.82rem;opacity:.85;margin-bottom:1px}
+.btn-line2{display:block;font-size:1.04rem;font-weight:900}
+.btn-arr{font-size:1.5rem;font-weight:900;opacity:.7}
+
+/* ── HERO BANDS ── */
+.hero-band{
+  padding:36px 24px 30px;text-align:center;color:var(--white);
+  border-radius:0 0 28px 28px;margin-bottom:0;
+}
+.hero-icon{font-size:3.2rem;margin-bottom:12px}
+.hero-title{font-family:'Black Han Sans',sans-serif;font-size:1.75rem;margin-bottom:8px}
+.hero-sub{font-size:.9rem;opacity:.9;line-height:1.55}
+
+/* ── TABS ── */
+.tab-bar{
+  display:flex;background:var(--white);
+  border-bottom:2px solid var(--light);
+  position:sticky;top:60px;z-index:50;
+}
+.tab{
+  flex:1;padding:14px 4px;text-align:center;font-size:.86rem;font-weight:700;
+  color:#aaa;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;
+}
+.tab.active{color:var(--dark);border-bottom-color:var(--green)}
+
+/* ── TYPE SWITCHER ── */
+.type-switch{
+  display:flex;gap:8px;overflow-x:auto;
+  padding:12px 20px 4px;background:var(--white);
+  border-bottom:1px solid var(--light);scrollbar-width:none;
+}
+.type-switch::-webkit-scrollbar{display:none}
+.type-pill{
+  padding:6px 14px;border-radius:30px;font-size:.8rem;font-weight:700;
+  white-space:nowrap;cursor:pointer;border:2px solid var(--light);
+  background:var(--white);color:var(--gray);transition:all .18s;flex-shrink:0;
+}
+.type-pill.active{color:var(--white);border-color:transparent}
+
+/* ── CARDS ── */
+.book-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:28px}
+.book-card{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;cursor:pointer;
+  box-shadow:var(--shadow-sm);transition:transform .15s,box-shadow .15s;
+}
+.book-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.rank-badge{
+  position:absolute;top:6px;left:6px;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:900;z-index:2;
+}
+.rank-badge.gold{background:linear-gradient(135deg,#FFD700,#FFA500);color:white;box-shadow:0 2px 8px rgba(255,184,0,.5)}
+.rank-badge.silver{background:linear-gradient(135deg,#C0C0C0,#A0A0A0);color:white;box-shadow:0 2px 8px rgba(160,160,160,.4)}
+.rank-badge.bronze{background:linear-gradient(135deg,#CD7F32,#A0522D);color:white;box-shadow:0 2px 8px rgba(160,80,30,.4)}
+.rank-badge.normal{background:rgba(0,0,0,.5);color:white}
+.type-participants{
+  display:inline-flex;align-items:center;gap:3px;
+  margin:0 auto 7px;padding:2px 8px;border-radius:12px;
+  font-size:.67rem;font-weight:700;line-height:1.3;
+}
+.cover-wrap{width:100%;aspect-ratio:3/4;background:var(--light);overflow:hidden;position:relative}
+.cover-img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-ph{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;background:linear-gradient(135deg,#F0F0E8,#E8E8D8);
+}
+.book-info{padding:11px 12px 14px}
+.book-title{
+  font-weight:700;font-size:.83rem;line-height:1.4;margin-bottom:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.book-author{font-size:.73rem;color:var(--gray);margin-bottom:8px}
+.book-foot{display:flex;align-items:center;justify-content:space-between}
+.hbtn{
+  display:flex;align-items:center;gap:3px;font-size:1rem;
+  color:#ccc;transition:transform .2s;padding:2px;
+}
+.hbtn:hover{transform:scale(1.3)}.hbtn.hearted{color:var(--pink)}
+.hcnt{font-size:.78rem;color:var(--gray)}
+.badge{font-size:.67rem;padding:3px 8px;border-radius:10px;font-weight:700}
+.badge-cur{background:#F0FFF4;color:#27AE60}.badge-usr{background:#FFF0F5;color:var(--pink)}
+.reason-snip{
+  font-size:.72rem;color:#777;font-style:italic;margin-top:8px;
+  border-top:1px solid var(--light);padding-top:7px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+/* ── MBTI SELECT GRID ── */
+.group-section{margin-bottom:22px}
+.group-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;
+}
+.type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.type-card{
+  background:var(--white);border-radius:var(--radius);padding:10px 6px 0;
+  text-align:center;cursor:pointer;box-shadow:var(--shadow-sm);
+  border:2px solid transparent;transition:all .18s;overflow:hidden;
+}
+.type-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.type-card.selected{box-shadow:4px 4px 0 var(--sel-c,#888);border-color:var(--sel-c,#888)}
+.type-code{font-family:'Black Han Sans',sans-serif;font-size:1.05rem;margin-bottom:2px}
+.type-name{font-size:.62rem;color:var(--gray);margin-bottom:6px}
+.type-char{display:block;width:100%;line-height:0}
+.type-char svg{width:100%;height:auto;display:block;border-radius:0 0 calc(var(--radius) - 2px) calc(var(--radius) - 2px)}
+
+.sel-preview{
+  background:var(--white);border-radius:var(--radius);padding:18px 20px;
+  box-shadow:var(--shadow-sm);margin-bottom:20px;
+  display:none;align-items:center;gap:16px;border-left:4px solid var(--green);
+}
+.sel-preview.on{display:flex}
+.sel-badge{
+  width:56px;height:56px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;color:var(--white);
+  font-family:'Black Han Sans',sans-serif;font-size:.95rem;flex-shrink:0;
+}
+.sel-info h3{font-weight:700;font-size:.97rem;margin-bottom:3px}
+.sel-info p{font-size:.82rem;color:var(--gray)}
+.go-btn{
+  display:block;width:100%;margin-top:22px;padding:16px;
+  background:var(--green);color:var(--white);font-size:1.1rem;font-weight:700;
+  border-radius:var(--radius-xl);text-align:center;
+  box-shadow:0 4px 16px rgba(141,196,135,.4);transition:all .18s;
+  opacity:.5;pointer-events:none;
+}
+.go-btn.ready{opacity:1;pointer-events:all}.go-btn.ready:hover{background:var(--green-d)}
+
+/* ── TYPE ROOM HERO ── */
+.room-hero{
+  padding:30px 24px 26px;text-align:center;color:var(--white);position:relative;overflow:hidden;
+}
+.room-hero-bg{
+  position:absolute;font-size:9rem;opacity:.1;top:50%;left:50%;
+  transform:translate(-50%,-50%);pointer-events:none;
+}
+.room-type{font-family:'Black Han Sans',sans-serif;font-size:3rem;position:relative}
+.room-korean{font-size:1rem;opacity:.9;margin-bottom:10px;position:relative}
+.room-traits{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;position:relative}
+.trait{background:rgba(255,255,255,.25);padding:4px 12px;border-radius:20px;font-size:.76rem;font-weight:700}
+.room-stats{display:flex;justify-content:center;gap:34px;position:relative}
+.stat-n{font-size:1.5rem;font-weight:900}.stat-l{font-size:.73rem;opacity:.8}
+.live-dot-wrap{margin-top:10px;position:relative}
+.live-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.18);padding:4px 14px;border-radius:20px;font-size:.74rem;font-weight:700;
+}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#7FFF7F;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+/* ── SEARCH ── */
+.search-row{display:flex;gap:10px;margin-bottom:16px}
+.comm-search-row{display:flex;gap:10px;margin-bottom:14px}
+.s-input{
+  flex:1;padding:13px 18px;border:2px solid var(--light);border-radius:var(--radius-xl);
+  font-family:inherit;font-size:.93rem;outline:none;background:var(--white);transition:border-color .2s;
+}
+.s-input:focus{border-color:var(--green)}
+.s-btn{
+  padding:13px 18px;background:var(--green);color:var(--white);border-radius:var(--radius-xl);
+  font-weight:700;font-size:.93rem;white-space:nowrap;transition:background .2s;
+}
+.s-btn:hover{background:var(--green-d)}
+.s-item{
+  background:var(--white);border-radius:var(--radius);padding:13px;
+  display:flex;gap:13px;box-shadow:var(--shadow-sm);
+  border:2px solid transparent;transition:border-color .2s,transform .15s;margin-bottom:10px;
+}
+.s-item:hover{border-color:var(--green);transform:translateX(3px)}
+.s-cover{width:54px;height:74px;object-fit:cover;border-radius:8px;background:var(--light);flex-shrink:0}
+.s-info{flex:1;min-width:0}
+.s-title{font-weight:700;font-size:.86rem;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.s-author{font-size:.77rem;color:var(--gray);margin-bottom:3px}
+.s-pub{font-size:.72rem;color:#aaa}
+.add-btn{
+  padding:8px 13px;background:var(--yellow);color:var(--white);
+  border-radius:12px;font-size:.77rem;font-weight:700;align-self:center;flex-shrink:0;
+  transition:background .2s;
+}
+.add-btn:hover{background:var(--yellow-d)}.add-btn:disabled{background:#C8E6C9;cursor:default}
+.srch-pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;padding-top:10px;border-top:1px solid var(--light)}
+.srch-page-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--light);background:var(--white);font-size:.85rem;font-weight:700;cursor:pointer;color:var(--gray);transition:all .15s}
+.srch-page-btn:hover{border-color:var(--yellow);color:var(--yellow-d)}
+.srch-page-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--white)}
+.s-filter{
+  padding:13px 10px;border:2px solid var(--light);border-radius:var(--radius-xl);
+  font-family:inherit;font-size:.82rem;outline:none;background:var(--white);
+  color:var(--dark);cursor:pointer;transition:border-color .2s;flex-shrink:0;
+}
+.s-filter:focus{border-color:var(--green)}
+
+/* ── REC FORM ── */
+.rec-form{
+  background:var(--white);border-radius:var(--radius-lg);padding:22px;
+  box-shadow:var(--shadow-sm);margin:14px 0 24px;border-left:4px solid var(--green);display:none;
+}
+.rec-preview{background:var(--bg);border-radius:14px;padding:13px;display:flex;gap:12px;margin-bottom:14px}
+.pr-cover{width:42px;height:58px;object-fit:cover;border-radius:6px;background:var(--light)}
+.pr-title{font-weight:700;font-size:.83rem;margin-bottom:3px}
+.pr-author{font-size:.76rem;color:var(--gray)}
+.form-lbl{font-size:.81rem;font-weight:700;color:var(--gray);margin-bottom:6px;display:block}
+.form-ta{
+  width:100%;padding:11px 15px;border:2px solid var(--light);border-radius:14px;
+  font-family:inherit;font-size:.88rem;resize:none;height:76px;outline:none;margin-bottom:12px;
+}
+.form-ta:focus{border-color:var(--green)}
+.form-sub{
+  width:100%;padding:13px;background:var(--green);color:var(--white);
+  border-radius:var(--radius-xl);font-weight:700;font-size:.97rem;transition:background .2s;
+}
+.form-sub:hover{background:var(--green-d)}.form-sub:disabled{background:#ccc;cursor:default}
+
+/* ── BOOK DETAIL ── */
+.detail-hero{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:26px 20px 22px;background:linear-gradient(180deg,#EDFAEC,var(--bg));
+  border-bottom:2px solid var(--light);margin-bottom:22px;
+}
+.detail-cover-wrap{
+  width:112px;height:160px;border-radius:11px;overflow:hidden;
+  box-shadow:0 8px 22px rgba(0,0,0,.17);background:var(--light);
+  display:flex;align-items:center;justify-content:center;font-size:3rem;flex-shrink:0;
+}
+.detail-cover{width:100%;height:100%;object-fit:cover;display:block}
+.detail-title{font-family:'Black Han Sans',sans-serif;font-size:1.1rem;line-height:1.4;margin-bottom:7px}
+.detail-author{font-size:.84rem;color:var(--gray);margin-bottom:4px}
+.detail-pub{font-size:.78rem;color:#aaa;margin-bottom:13px}
+.heart-big{
+  display:inline-flex;align-items:center;gap:6px;
+  border:2px solid var(--pink);border-radius:30px;padding:8px 16px;
+  color:var(--pink);font-size:.88rem;font-weight:700;transition:all .2s;
+}
+.heart-big.hearted{background:var(--pink);color:var(--white)}
+.heart-big:hover{transform:scale(1.04)}
+
+.link-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.lib-link{
+  display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 6px;
+  border-radius:var(--radius);font-size:.74rem;font-weight:700;color:var(--white);text-align:center;
+  transition:opacity .2s,transform .15s;
+}
+.lib-link:hover{opacity:.85;transform:translateY(-2px)}
+.ll-icon{font-size:1.5rem}
+.ll-aladin{background:linear-gradient(135deg,#FF7043,#E64A19)}
+.ll-google{background:linear-gradient(135deg,#9C6FDE,#7B4FBE)}
+
+.sec-card{background:var(--white);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.sec-title{font-family:'Black Han Sans',sans-serif;font-size:1.05rem;margin-bottom:13px}
+.desc-text{font-size:.88rem;line-height:1.75;color:#555}
+
+/* ── REASON BOX ── */
+.reason-box{
+  background:linear-gradient(135deg,#FFF8E7,#FFF3D0);border-radius:14px;padding:14px 16px;
+  margin-bottom:16px;border-left:4px solid var(--yellow);
+}
+.reason-label{font-size:.75rem;font-weight:700;color:var(--yellow-d);margin-bottom:5px}
+.reason-text{font-size:.85rem;color:#555;line-height:1.6}
+
+/* ── REVIEWS ── */
+.rev-form{background:var(--bg);border-radius:14px;padding:16px;margin-bottom:14px}
+.rev-form-t{font-weight:700;font-size:.93rem;margin-bottom:11px}
+.rev-ta{
+  width:100%;padding:11px 15px;border:2px solid #E8E8D8;border-radius:13px;
+  font-family:inherit;font-size:.88rem;resize:none;height:70px;outline:none;
+  background:var(--white);margin-bottom:10px;display:block;
+}
+.rev-ta:focus{border-color:var(--green)}
+.rev-sub{padding:9px 20px;background:var(--green);color:var(--white);border-radius:28px;font-size:.88rem;font-weight:700;transition:background .2s}
+.rev-sub:hover{background:var(--green-d)}.rev-sub:disabled{background:#ccc;cursor:default}
+.rev-item{background:var(--white);border-radius:14px;padding:14px 16px;margin-bottom:11px;box-shadow:var(--shadow-sm)}
+.rev-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.rev-mbti{display:inline-block;padding:3px 11px;border-radius:18px;font-size:.76rem;font-weight:700;color:var(--white)}
+.rev-date{font-size:.76rem;color:#aaa}
+.rev-text{font-size:.86rem;line-height:1.65;color:#444}
+
+.step-body a{color:var(--orange);text-decoration:underline}
+.code-block{
+  background:#1E1E2E;color:#CDD6F4;padding:14px 16px;border-radius:13px;
+  font-family:'Courier New',monospace;font-size:.79rem;line-height:1.7;margin:11px 0;overflow-x:auto;white-space:pre;
+}
+.hl{color:#A6E3A1}.cm{color:#6C7086}
+.warn-box{background:#FFF8E7;border-radius:13px;padding:14px;border-left:4px solid var(--yellow);font-size:.83rem;line-height:1.6;margin-top:11px}
+
+/* ── TEST PAGE ── */
+.age-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.age-card{
+  background:var(--white);border-radius:var(--radius);padding:18px 10px;text-align:center;
+  cursor:pointer;box-shadow:var(--shadow-sm);border:3px solid transparent;transition:all .2s;
+}
+.age-card:hover{border-color:var(--green)}.age-card.active{border-color:var(--green);background:#F0FFF0}
+.age-icon{font-size:2.2rem;margin-bottom:7px}.age-lbl{font-weight:700;font-size:.93rem;margin-bottom:3px}.age-sub{font-size:.76rem;color:var(--gray)}
+.test-link-card{background:var(--white);border-radius:var(--radius-lg);padding:26px 22px;box-shadow:var(--shadow-sm);margin-bottom:18px;text-align:center}
+.test-ext-btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 32px;
+  background:var(--green);color:var(--white);border-radius:var(--radius-xl);
+  font-weight:700;font-size:1.03rem;box-shadow:0 4px 14px rgba(141,196,135,.5);
+  transition:transform .15s,box-shadow .15s;
+}
+.test-ext-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(141,196,135,.5)}
+.step-guide{background:var(--white);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+.guide-step{display:flex;gap:13px;align-items:flex-start;margin-bottom:13px}
+.guide-num{width:26px;height:26px;border-radius:50%;background:var(--green);color:var(--white);font-weight:700;font-size:.83rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.guide-txt{font-size:.86rem;color:#555;line-height:1.55;padding-top:3px}
+.divider{display:flex;align-items:center;gap:10px;color:#bbb;font-size:.83rem;margin:18px 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#E0E0D8}
+.result-card{background:#FFF8E7;border-radius:var(--radius-lg);padding:22px;border:2px dashed var(--yellow);text-align:center;margin-bottom:24px}
+.result-card h3{font-weight:700;font-size:.97rem;margin-bottom:7px}
+.result-card p{font-size:.85rem;color:var(--gray);margin-bottom:14px;line-height:1.5}
+.result-btn{
+  display:inline-block;padding:13px 26px;background:var(--yellow);color:var(--white);
+  border-radius:var(--radius-xl);font-weight:700;font-size:.93rem;transition:transform .15s;
+}
+.result-btn:hover{transform:translateY(-2px)}
+
+/* ── EMPTY / LOADER ── */
+.empty-box{text-align:center;padding:40px 20px;background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);margin-bottom:18px}
+.empty-icon{font-size:2.8rem;margin-bottom:11px}.empty-text{color:var(--gray);font-size:.88rem;line-height:1.6}
+.loader{display:flex;justify-content:center;padding:28px;gap:8px}
+.loader span{width:10px;height:10px;border-radius:50%;animation:bloop .6s ease-in-out infinite}
+.loader span:nth-child(1){background:var(--green)}
+.loader span:nth-child(2){background:var(--yellow);animation-delay:.12s}
+.loader span:nth-child(3){background:var(--orange);animation-delay:.24s}
+@keyframes bloop{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* ── FAB ── */
+.fab{
+  position:fixed;bottom:28px;right:22px;width:56px;height:56px;border-radius:50%;
+  background:var(--yellow);color:var(--white);font-size:1.8rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(255,184,48,.5);z-index:200;transition:transform .2s;
+}
+.fab:hover{transform:scale(1.1) rotate(10deg)}
+.fab.hidden{display:none}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--dark);color:var(--white);padding:12px 24px;border-radius:var(--radius-xl);
+  font-size:.88rem;font-weight:700;z-index:9999;transition:transform .3s;white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── UTILS ── */
+.back-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px;background:var(--white);border:2px solid var(--light);border-radius:var(--radius-xl);
+  font-weight:700;font-size:.88rem;cursor:pointer;width:100%;margin-bottom:28px;transition:all .2s;
+}
+.back-btn:hover{border-color:var(--green);color:var(--green-d)}
+
+/* ── PHOTO TAB ── */
+.necut-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.upload-cell{
+  aspect-ratio:1;border-radius:12px;border:2.5px dashed var(--light);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;transition:border-color .2s;background:var(--white);position:relative;
+}
+.upload-ph{display:flex;flex-direction:column;align-items:center;gap:5px}
+.photo-src-btns{display:flex;gap:4px}
+.photo-src-btn{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  padding:6px 7px;border-radius:9px;background:var(--light);
+  cursor:pointer;font-size:1.1rem;transition:background .15s;border:none;font-family:inherit;
+}
+.photo-src-btn small{font-size:.6rem;font-weight:700;color:var(--gray)}
+.photo-src-btn:hover,.photo-src-btn:active{background:#E0E0D8}
+.upload-slot-num{font-size:.7rem;color:#bbb;font-weight:700}
+.upload-resel{
+  position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:6px;
+  padding:5px;background:rgba(0,0,0,.5);
+}
+.upload-resel label,.upload-resel button{
+  color:#fff;font-size:.95rem;cursor:pointer;padding:3px 8px;
+  border-radius:7px;background:rgba(255,255,255,.2);transition:background .15s;
+  border:none;font-family:inherit;
+}
+.upload-resel label:hover,.upload-resel button:hover{background:rgba(255,255,255,.38)}
+.compose-btn{
+  width:100%;padding:13px;background:var(--green);color:var(--white);border-radius:var(--radius-xl);
+  font-weight:700;font-size:.95rem;transition:background .2s;border:none;cursor:pointer;
+}
+.compose-btn:hover{background:var(--green-d)}
+.photo-preview-wrap{margin-top:22px;background:var(--white);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow-sm)}
+/* book cover search modal */
+.book-cover-modal{
+  position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.55);
+  display:flex;align-items:flex-end;
+}
+.book-cover-modal-body{
+  background:var(--white);border-radius:20px 20px 0 0;
+  padding:20px 20px 36px;width:100%;max-height:82vh;overflow-y:auto;
+}
+.cover-srch-item{
+  display:flex;gap:10px;align-items:center;padding:10px;
+  background:var(--bg);border-radius:12px;margin-bottom:8px;
+}
+.cover-srch-img{width:42px;height:58px;object-fit:cover;border-radius:7px;background:var(--light);flex-shrink:0}
+.cover-srch-info{flex:1;min-width:0}
+.cover-srch-title{font-weight:700;font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:2px}
+.cover-srch-author{font-size:.74rem;color:var(--gray)}
+.cover-add-btn{
+  padding:7px 13px;background:var(--green);color:#fff;border-radius:10px;
+  font-size:.8rem;font-weight:700;flex-shrink:0;border:none;cursor:pointer;transition:background .15s;
+}
+.cover-add-btn:hover{background:var(--green-d)}.cover-add-btn:disabled{background:#ccc;cursor:default}
+
+/* ── 도서관 큐레이션 ── */
+.cur-search-box{
+  display:flex;max-width:100%;
+  border:2px solid #6366F1;border-radius:50px;
+  overflow:hidden;background:var(--white);
+  box-shadow:0 2px 12px rgba(99,102,241,.15);margin-bottom:14px;
+}
+.cur-search-box input{
+  flex:1;border:none;outline:none;
+  padding:13px 18px;font-size:.97rem;
+  color:var(--dark);background:transparent;font-family:inherit;
+}
+.cur-search-box button{
+  background:#6366F1;color:#fff;border:none;
+  padding:13px 22px;font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:background .2s;white-space:nowrap;
+}
+.cur-search-box button:hover{background:#4F46E5}
+.cur-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;align-items:center}
+.cur-tag-lbl{font-size:.75rem;color:var(--gray)}
+.cur-tag{
+  border:1.5px solid #E5E7EB;background:var(--white);
+  border-radius:20px;padding:4px 12px;font-size:.78rem;
+  cursor:pointer;transition:all .15s;font-family:inherit;
+}
+.cur-tag:hover{border-color:#6366F1;color:#6366F1}
+.cur-topic-badge{
+  display:flex;align-items:center;gap:14px;
+  background:var(--white);border-radius:16px;
+  padding:14px 18px;box-shadow:0 2px 12px rgba(0,0,0,.07);
+  border-left:5px solid #6366F1;margin-bottom:16px;
+}
+.cur-topic-code{font-size:1.8rem;font-weight:800;opacity:.18;min-width:32px}
+.cur-topic-info{display:flex;flex-direction:column;gap:2px}
+.cur-topic-label{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em}
+.cur-topic-name{font-size:1.25rem;font-weight:800}
+.cur-topic-sub{font-size:.78rem;color:var(--gray)}
+.cur-section-title{
+  font-weight:800;font-size:.97rem;margin:20px 0 12px;
+  display:flex;align-items:center;gap:7px;
+}
+.cur-section-badge{
+  font-size:.7rem;background:#EEF2FF;color:#6366F1;
+  border-radius:12px;padding:2px 8px;font-weight:700;
+}
+.cur-saseo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:4px}
+.cur-rec-card{
+  background:var(--white);border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.cur-rec-cover{
+  width:100%;aspect-ratio:3/4;object-fit:cover;
+  background:#EEF2FF;display:block;
+}
+.cur-rec-ph{
+  width:100%;aspect-ratio:3/4;
+  background:linear-gradient(135deg,#EEF2FF,#DDD6FE);
+  display:flex;align-items:center;justify-content:center;font-size:2rem;
+}
+.cur-rec-body{padding:10px 11px 13px}
+.cur-rec-title{
+  font-weight:700;font-size:.8rem;line-height:1.4;margin-bottom:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.cur-rec-author{font-size:.72rem;color:var(--gray);margin-bottom:6px}
+.cur-rec-cat{font-size:.68rem;background:#F0FDF4;color:#16A34A;border-radius:4px;padding:2px 6px}
+.cur-rec-txt{
+  font-size:.72rem;color:#777;line-height:1.45;margin-top:6px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.cur-search-item{
+  background:var(--white);border-radius:12px;padding:13px 15px;
+  margin-bottom:8px;box-shadow:0 1px 6px rgba(0,0,0,.05);
+  text-decoration:none;color:inherit;display:block;transition:transform .12s;
+}
+.cur-search-item:hover{transform:translateY(-2px)}
+.cur-si-title{font-weight:700;font-size:.88rem;color:#1E3A5F;margin-bottom:5px}
+.cur-si-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:.73rem;color:var(--gray)}
+.cur-si-kdc{
+  font-size:.68rem;background:#EEF2FF;color:#6366F1;
+  border-radius:4px;padding:2px 7px;margin-top:5px;display:inline-block;
+}
+.cur-pagination{
+  display:flex;justify-content:center;gap:5px;margin:16px 0 8px;flex-wrap:wrap;
+}
+.cur-pg-btn{
+  width:32px;height:32px;border:1.5px solid #E5E7EB;
+  background:var(--white);border-radius:8px;font-size:.82rem;
+  cursor:pointer;transition:all .15s;display:flex;
+  align-items:center;justify-content:center;
+}
+.cur-pg-btn:hover{border-color:#6366F1;color:#6366F1}
+.cur-pg-btn.active{background:#6366F1;color:#fff;border-color:#6366F1}
+.cur-pg-btn:disabled{opacity:.4;cursor:not-allowed}
+.cur-server-warn{
+  background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:12px;
+  padding:16px;text-align:center;color:#92400E;margin-bottom:16px;
+  font-size:.85rem;line-height:1.6;
+}
+.cur-total{font-size:.78rem;color:var(--gray);margin-left:auto}
+
+/* ── 사서 자연어 검색 ── */
+.lib-search-box{
+  display:flex;border:2px solid #0F766E;border-radius:16px;
+  overflow:hidden;background:var(--white);
+  box-shadow:0 2px 14px rgba(15,118,110,.15);margin-bottom:10px;
+}
+.lib-search-box textarea{
+  flex:1;border:none;outline:none;
+  padding:14px 18px;font-size:.95rem;
+  color:var(--dark);background:transparent;font-family:inherit;
+  resize:none;min-height:56px;max-height:120px;line-height:1.5;
+}
+.lib-search-box button{
+  background:#0F766E;color:#fff;border:none;
+  padding:0 22px;font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:background .2s;white-space:nowrap;align-self:stretch;
+}
+.lib-search-box button:hover{background:#0D9488}
+.lib-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;align-items:center}
+.lib-tag{border:1.5px solid #E5E7EB;background:var(--white);border-radius:20px;
+  padding:4px 12px;font-size:.78rem;cursor:pointer;transition:all .15s;font-family:inherit}
+.lib-tag:hover{border-color:#0F766E;color:#0F766E}
+.lib-response-card{
+  background:linear-gradient(135deg,#F0FDFA,#ECFDF5);
+  border:1.5px solid #99F6E4;border-radius:18px;
+  padding:20px;margin-bottom:20px;
+  box-shadow:0 2px 12px rgba(15,118,110,.08);
+}
+.lib-resp-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.lib-resp-icon{font-size:1.8rem}
+.lib-resp-title{font-weight:800;font-size:1rem;color:#0F766E}
+.lib-resp-badge{
+  font-size:.68rem;background:#CCFBF1;color:#0F766E;
+  border-radius:10px;padding:2px 8px;font-weight:700;margin-left:auto;
+}
+.lib-resp-text{
+  font-size:.9rem;line-height:1.8;color:#1C2B2A;
+  white-space:pre-wrap;word-break:break-word;
+}
+.lib-sources-title{
+  font-weight:700;font-size:.88rem;color:var(--gray);
+  margin:18px 0 10px;display:flex;align-items:center;gap:6px;
+}
+.lib-source-card{
+  background:var(--white);border-radius:12px;padding:13px 15px;
+  margin-bottom:8px;border-left:3px solid #0F766E;
+  box-shadow:0 1px 5px rgba(0,0,0,.05);cursor:pointer;
+  transition:box-shadow .15s;
+}
+.lib-source-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.lib-src-q{font-weight:700;font-size:.85rem;color:#1C4B45;margin-bottom:5px}
+.lib-src-a{font-size:.78rem;color:var(--gray);line-height:1.5;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lib-src-a.expanded{-webkit-line-clamp:unset;display:block}
+.lib-src-toggle{font-size:.7rem;color:#0F766E;margin-top:4px;font-weight:600}
+.lib-src-meta{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.lib-src-badge{font-size:.68rem;border-radius:6px;padding:2px 7px;font-weight:600}
+.lib-src-subj{background:#F0FDFA;color:#0F766E}
+.lib-src-type{background:#EEF2FF;color:#6366F1}
+.lib-cite{background:#FEF3C7;color:#92400E;font-weight:700;font-size:.82em;
+  padding:1px 5px;border-radius:5px;margin:0 1px;cursor:default}
+.lib-crawl-card{
+  background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:14px;
+  padding:18px;text-align:center;margin-bottom:16px;
+}
+.lib-crawl-title{font-weight:700;font-size:.95rem;color:#92400E;margin-bottom:8px}
+.lib-crawl-desc{font-size:.82rem;color:#78350F;line-height:1.6;margin-bottom:14px}
+.lib-crawl-btn{
+  background:#0F766E;color:#fff;border:none;border-radius:10px;
+  padding:10px 24px;font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:background .15s;font-family:inherit;
+}
+.lib-crawl-btn:hover{background:#0D9488}
+.lib-crawl-btn:disabled{background:#ccc;cursor:not-allowed}
+.lib-progress{
+  background:#F0FDFA;border:1px solid #99F6E4;border-radius:10px;
+  padding:12px 16px;font-size:.82rem;color:#0F766E;margin-bottom:12px;
+}
+.lib-progress-bar{
+  height:6px;background:#E5E7EB;border-radius:3px;overflow:hidden;margin-top:8px;
+}
+.lib-progress-fill{height:100%;background:#0F766E;border-radius:3px;transition:width .3s}
+.lib-empty{text-align:center;padding:48px 0;color:var(--gray)}
+.lib-loading{text-align:center;padding:40px 0;color:var(--gray)}
+.lib-loading .spinner{border-top-color:#0F766E}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header" id="siteHeader">
+  <button class="header-back" id="headerBack" onclick="goBack()" style="display:none">←</button>
+  <div style="width:40px" id="headerBackSpace"></div>
+  <div class="header-logo">
+    <span class="logo-m">MBTI</span>&nbsp;<span class="logo-b">Book</span><span class="logo-t">Talk</span>
+  </div>
+  <div class="header-right">
+    <div class="online-pill" id="onlinePill">
+      <span class="online-dot"></span><span id="onlineCount">1</span>명 접속 중
+    </div>
+  </div>
+</header>
+
+<!-- ── PAGES ── -->
+<div id="pg-landing"  class="page active"></div>
+<div id="pg-test"     class="page"></div>
+<div id="pg-select"   class="page"></div>
+<div id="pg-room"     class="page"></div>
+<div id="pg-detail"   class="page"></div>
+<div id="pg-curation"   class="page"></div>
+<div id="pg-librarian" class="page"></div>
+
+<!-- FAB -->
+<button class="fab hidden" id="fab" onclick="nav('room',{tab:'search'})">+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Book Cover Search Modal -->
+<div id="bookCoverModal" class="book-cover-modal" style="display:none" onclick="if(event.target===this)closeBookCoverSearch()">
+  <div class="book-cover-modal-body">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <strong style="font-size:.97rem">📖 책표지 선택 — 사진 <span id="bookCoverSlotLabel">1</span></strong>
+      <button onclick="closeBookCoverSearch()" style="font-size:1.3rem;color:var(--gray);background:none;border:none;cursor:pointer;line-height:1">✕</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="s-input" id="necutBookInput" placeholder="책 제목 또는 저자 검색" onkeydown="if(event.key==='Enter')doNecutBookSearch()">
+      <button class="s-btn" onclick="doNecutBookSearch()">검색</button>
+    </div>
+    <div id="necutBookResults"></div>
+  </div>
+</div>
+
+<!-- chars.js (캐릭터 SVG) -->
+<script src="js/chars.js"></script>
+<!-- data.js (MBTI data) -->
+<script src="js/data.js"></script>
+
+<script>
+/* ══════════════════════════════════════════
+   DB — localStorage only
+   ══════════════════════════════════════════ */
+async function addRec(type, book, review) {
+  const rec = { title:book.title||'', author:book.author||'', isbn:book.isbn||'', cover:book.cover||'',
+    publisher:book.publisher||'', review:review||'', hearts:0, userKey:getUserKey(),
+    createdAt:new Date().toISOString() };
+  const l=lsGet('recs_'+type,[]); l.unshift({...rec,id:Date.now()+''}); lsSet('recs_'+type,l);
+  recordParticipation(type);
+}
+
+function subscribeRecs(type, cb) {
+  cb(lsGet('recs_'+type,[]));
+  return ()=>{};
+}
+
+async function toggleRecHeart(type, docId, hearted) {
+  const lk='ht_r_'+type+'_'+docId;
+  const nowHearted = !hearted;
+  lsSet(lk, nowHearted);
+  const recs = lsGet('recs_'+type, []);
+  const rec = recs.find(r => r.id === docId);
+  if (rec) {
+    rec.hearts = Math.max(0, (rec.hearts||0) + (nowHearted ? 1 : -1));
+    lsSet('recs_'+type, recs);
+  }
+  return nowHearted;
+}
+
+function subscribeReviews(bkey, cb) {
+  cb(lsGet('rev_'+bkey,[]));
+  return ()=>{};
+}
+
+async function addReview(bkey, text, mbti) {
+  const r={text,mbti:mbti||'MBTI',userKey:getUserKey(),dateStr:new Date().toLocaleDateString('ko-KR'),
+    createdAt:new Date().toISOString()};
+  const l=lsGet('rev_'+bkey,[]); l.unshift({...r,id:Date.now()+''}); lsSet('rev_'+bkey,l);
+}
+
+function bkey(isbn, title) { return (isbn||title||'x').replace(/[^a-zA-Z0-9가-힣]/g,'_').slice(0,80); }
+
+/* ══════════════════════════════════════════
+   API — ALADIN + GOOGLE BOOKS
+   ══════════════════════════════════════════ */
+const ALADIN_KEY = 'ttbpopi07062229002';
+
+function aladinSearch(q, queryType, start, maxResults) {
+  queryType = queryType || 'Keyword';
+  start = start || 1;
+  maxResults = maxResults || 50;
+  return new Promise(res => {
+    const cb='al_'+queryType.slice(0,1)+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
+    let done=false;
+    window[cb]=d=>{done=true;delete window[cb];
+      res((d.item||[]).map(b=>({title:b.title,author:b.author,publisher:b.publisher||'',
+        isbn:b.isbn13||b.isbn||'',cover:(b.cover||'').replace('coversum','cover200'),
+        link:b.link||'',desc:b.description||'',source:'aladin'})));
+    };
+    const s=document.createElement('script');
+    s.src=`https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${ALADIN_KEY}&Query=${encodeURIComponent(q)}&QueryType=${queryType}&MaxResults=${maxResults}&start=${start}&SearchTarget=Book&output=js&Version=20131101&CallBack=${cb}`;
+    s.onerror=()=>{if(!done)res([])};
+    document.head.appendChild(s);
+    setTimeout(()=>{if(!done){done=true;res([])}},7000);
+  });
+}
+
+async function googleSearch(q) {
+  try {
+    const r=await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(q)}&langRestrict=ko&maxResults=40`);
+    const d=await r.json();
+    return (d.items||[]).map(v=>{
+      const i=v.volumeInfo;
+      return {title:i.title||'',author:(i.authors||[]).join(', '),publisher:i.publisher||'',
+        isbn:((i.industryIdentifiers||[]).find(x=>x.type==='ISBN_13')||{}).identifier||'',
+        cover:(i.imageLinks?.thumbnail||'').replace('http://','https://'),
+        link:i.infoLink||'',desc:i.description||'',source:'google'};
+    });
+  } catch { return []; }
+}
+
+function _bookRelevance(book, q) {
+  const title = (book.title || '').toLowerCase();
+  const author = (book.author || '').toLowerCase();
+  const query = q.toLowerCase().trim();
+  const words = query.split(/\s+/).filter(w => w.length > 0);
+  if (!words.length) return 0;
+  if (title === query) return 1000;
+  if (title.startsWith(query)) return 800;
+  if (title.includes(query)) return 600;
+  const titleMatches = words.filter(w => title.includes(w)).length;
+  const authorMatches = words.filter(w => author.includes(w)).length;
+  return (titleMatches / words.length) * 400 + (authorMatches / words.length) * 100;
+}
+
+async function searchBooks(q, filterType) {
+  filterType = filterType || 'all';
+  const url = `/api/book-search?q=${encodeURIComponent(q)}&filter_type=${filterType}&max_results=80`;
+  let lastErr = '';
+  try {
+    const r = await fetch(url);
+    if (!r.ok) { lastErr = `HTTP ${r.status}`; throw new Error(lastErr); }
+    const data = await r.json();
+    const out = data.books || [];
+    if (out.length > 0) {
+      out.sort((a, b) => _bookRelevance(b, q) - _bookRelevance(a, q));
+      return out;
+    }
+    lastErr = 'empty';
+  } catch(e) {
+    lastErr = lastErr || e.message;
+    console.warn('[searchBooks] 백엔드 실패:', lastErr);
+  }
+  // 백엔드 실패 시 빈 배열 반환 (에러 메시지는 doSearch에서 표시)
+  window._lastSearchErr = lastErr;
+  return [];
+}
+
+/* 표지 URL 캐시 (query → url) */
+const _coverCache = {};
+
+async function getCover(query, isbn) {
+  const cacheKey = query || isbn;
+  if (_coverCache[cacheKey] !== undefined) return _coverCache[cacheKey];
+
+  let url = '';
+
+  /* 1순위: Aladin 키워드 검색 — 제목+저자 → 한국 도서 표지 정확도 최고 */
+  if (query && !url) {
+    url = await _aladinCoverByQuery(query);
+  }
+
+  /* 2순위: Aladin ItemLookUp — ISBN 직접 조회 (query 없을 때) */
+  if (isbn && !url) {
+    url = await _aladinCoverByIsbn(isbn);
+  }
+
+  /* 3순위: Google Books — ISBN 검색 */
+  if (isbn && !url) {
+    try {
+      const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&maxResults=1`);
+      const d = await r.json();
+      const img = d.items?.[0]?.volumeInfo?.imageLinks?.thumbnail;
+      if (img) url = img.replace('http://','https://').replace('zoom=1','zoom=0');
+    } catch {}
+  }
+
+  /* 4순위: Open Library — ISBN 표지 (1px GIF 여부 검증) */
+  if (isbn && !url) {
+    const ol = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    if (await _imgOk(ol)) url = ol;
+  }
+
+  /* 5순위: Google Books — 키워드 검색 */
+  if (!url && query) {
+    try {
+      const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&langRestrict=ko&maxResults=5`);
+      const d = await r.json();
+      for (const item of (d.items || [])) {
+        const img = item.volumeInfo?.imageLinks?.thumbnail;
+        if (img) { url = img.replace('http://','https://').replace('zoom=1','zoom=0'); break; }
+      }
+    } catch {}
+  }
+
+  _coverCache[cacheKey] = url;
+  return url;
+}
+
+/* Aladin Search JSONP — 키워드로 첫 번째 결과 표지 반환 */
+function _aladinCoverByQuery(query) {
+  return new Promise(resolve => {
+    const cb = '_acs_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
+    const s = document.createElement('script');
+    const t = setTimeout(() => { resolve(''); s.remove(); try{delete window[cb];}catch{} }, 5000);
+    window[cb] = data => {
+      clearTimeout(t); s.remove(); try{delete window[cb];}catch{}
+      const cover = data?.item?.[0]?.cover;
+      resolve(cover ? cover.replace('coversum','cover200') : '');
+    };
+    s.onerror = () => { clearTimeout(t); resolve(''); try{delete window[cb];}catch{} };
+    s.src = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${ALADIN_KEY}&Query=${encodeURIComponent(query)}&QueryType=Keyword&MaxResults=1&start=1&SearchTarget=Book&output=js&Version=20131101&CallBack=${cb}`;
+    document.head.appendChild(s);
+  });
+}
+
+/* Aladin ItemLookUp JSONP — ISBN으로 표지 반환 */
+function _aladinCoverByIsbn(isbn) {
+  return new Promise(resolve => {
+    const cb = '_aci_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
+    const s = document.createElement('script');
+    const t = setTimeout(() => { resolve(''); s.remove(); try{delete window[cb];}catch{} }, 5000);
+    window[cb] = data => {
+      clearTimeout(t); s.remove(); try{delete window[cb];}catch{}
+      const cover = data?.item?.[0]?.cover;
+      resolve(cover ? cover.replace('coversum','cover200') : '');
+    };
+    s.onerror = () => { clearTimeout(t); resolve(''); try{delete window[cb];}catch{} };
+    s.src = `https://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ALADIN_KEY}&itemIdType=ISBN13&ItemId=${isbn}&output=js&Version=20131101&CallBack=${cb}`;
+    document.head.appendChild(s);
+  });
+}
+
+/* 이미지 URL 유효성 검사 (Open Library 1px GIF 걸러내기) */
+function _imgOk(url) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => resolve(img.naturalWidth > 5);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
+
+function aladinUrl(isbn,title){return isbn?`https://www.aladin.co.kr/shop/wproduct.aspx?ISBN=${isbn}`:`https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&query=${encodeURIComponent(title)}`;}
+function googleUrl(title,author){return `https://books.google.com/books?q=${encodeURIComponent(title+' '+author)}`;}
+
+/* ══════════════════════════════════════════
+   ROUTER
+   ══════════════════════════════════════════ */
+const state={page:'landing',type:'INTJ',book:null,tab:'curated',history:[]};
+let roomUnsub=null, revUnsub=null;
+
+function nav(page, params={}) {
+  if(page!=='landing') state.history.push(state.page);
+  Object.assign(state, params);
+  state.page=page;
+  renderPage();
+  window.scrollTo(0,0);
+}
+
+function goBack() {
+  const prev=state.history.pop()||'landing';
+  state.page=prev;
+  renderPage();
+  window.scrollTo(0,0);
+}
+
+function renderPage() {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pg-'+state.page).classList.add('active');
+  const showBack = state.page!=='landing';
+  document.getElementById('headerBack').style.display = showBack?'':'none';
+  document.getElementById('headerBackSpace').style.display = showBack?'none':'';
+  document.getElementById('fab').classList.toggle('hidden', state.page!=='room');
+  if(state.page==='landing') renderLanding();
+  else if(state.page==='test') renderTest();
+  else if(state.page==='select') renderSelect();
+  else if(state.page==='room') renderRoom();
+  else if(state.page==='detail') renderDetail();
+  else if(state.page==='curation') renderCuration();
+  else if(state.page==='librarian') renderLibrarian();
+}
+
+/* ══════════════════════════════════════════
+   PAGE: CURATION  (국립중앙도서관 사서 추천)
+   ══════════════════════════════════════════ */
+const CUR = {
+  keyword: '',
+  page: 1,
+  loading: false,
+  API_BASE: window.location.hostname === 'localhost' ? 'http://localhost:8000' : '',
+  KDC_MAP: {
+    '0':{'name':'총류','color':'#6B7280'},
+    '1':{'name':'철학','color':'#8B5CF6'},
+    '2':{'name':'종교','color':'#F59E0B'},
+    '3':{'name':'사회과학','color':'#3B82F6'},
+    '4':{'name':'자연과학','color':'#10B981'},
+    '5':{'name':'기술과학','color':'#EF4444'},
+    '6':{'name':'예술','color':'#EC4899'},
+    '7':{'name':'언어','color':'#14B8A6'},
+    '8':{'name':'문학','color':'#F97316'},
+    '9':{'name':'역사','color':'#84CC16'},
+  }
+};
+
+function renderCuration() {
+  document.getElementById('pg-curation').innerHTML=`
+  <div style="background:linear-gradient(135deg,#6366F1,#8B5CF6);padding:28px 24px 24px;color:#fff;border-radius:0 0 24px 24px">
+    <div style="font-size:2.2rem;margin-bottom:8px">🏛️</div>
+    <div style="font-family:'Black Han Sans',sans-serif;font-size:1.6rem;margin-bottom:6px">국립도서관 큐레이션</div>
+    <div style="font-size:.87rem;opacity:.9;line-height:1.55">사서가 추천하는 도서 + 소장자료 통합 검색<br>국립중앙도서관 Open API 연동</div>
+  </div>
+  <div class="inner" style="padding-top:20px">
+    <form id="curForm" onsubmit="curSearch(event)">
+      <div class="cur-search-box">
+        <input id="curInput" type="text" placeholder="주제 또는 키워드 입력  (예: 철학, 인공지능, 경제...)" autocomplete="off"/>
+        <button type="submit">검색</button>
+      </div>
+    </form>
+    <div class="cur-tags">
+      <span class="cur-tag-lbl">추천</span>
+      ${['인공지능','철학','경제','문학','역사','환경','심리학','건축'].map(t=>`<button class="cur-tag" onclick="curQuick('${t}')">${t}</button>`).join('')}
+    </div>
+    <div id="curBody"></div>
+  </div>`;
+}
+
+async function curSearch(e) {
+  if(e) e.preventDefault();
+  const kwd = document.getElementById('curInput').value.trim();
+  if(!kwd) return;
+  CUR.keyword = kwd;
+  CUR.page = 1;
+  await curFetch();
+}
+
+function curQuick(kwd) {
+  document.getElementById('curInput').value = kwd;
+  CUR.keyword = kwd;
+  CUR.page = 1;
+  curFetch();
+}
+
+async function curFetch() {
+  const body = document.getElementById('curBody');
+  if(!body) return;
+  body.innerHTML=`<div style="text-align:center;padding:48px 0;color:var(--gray)"><div style="font-size:2rem;margin-bottom:12px">🔄</div>도서 정보를 불러오는 중...</div>`;
+
+  try {
+    const url = `${CUR.API_BASE}/api/analyze?keyword=${encodeURIComponent(CUR.keyword)}&page=${CUR.page}&page_size=10`;
+    const res = await fetch(url, {signal: AbortSignal.timeout(12000)});
+    if(!res.ok) throw new Error(`서버 오류 (${res.status})`);
+    const data = await res.json();
+    curRender(data);
+  } catch(err) {
+    const isConn = err.name==='TypeError' || err.name==='AbortError';
+    body.innerHTML=`
+      <div class="cur-server-warn">
+        <div style="font-size:1.8rem;margin-bottom:8px">⚠️</div>
+        <strong>로컬 서버를 먼저 실행해주세요</strong><br><br>
+        터미널에서 아래 명령어를 실행한 후 다시 검색하세요:<br>
+        <code style="display:inline-block;background:#FEF3C7;padding:6px 12px;border-radius:8px;margin-top:8px;font-size:.82rem">
+          cd ~/mbtibooktalk/server && ./run.sh
+        </code>
+        ${isConn?'':`<br><br><span style="color:#DC2626">${err.message}</span>`}
+      </div>`;
+  }
+}
+
+function curRender(data) {
+  const body = document.getElementById('curBody');
+  const kdc = data.kdc;
+  const color = CUR.KDC_MAP[kdc.code]?.color || '#6366F1';
+
+  let html = `
+    <div class="cur-topic-badge" style="border-left-color:${color}">
+      <div class="cur-topic-code" style="color:${color}">${kdc.code??'?'}</div>
+      <div class="cur-topic-info">
+        <span class="cur-topic-label">KDC 주제 분류</span>
+        <span class="cur-topic-name" style="color:${color}">${kdc.name}</span>
+      </div>
+    </div>`;
+
+  // 키워드 기반 추천도서 (상위 6건)
+  const pg = data.pagination;
+  const books = data.search_results||[];
+  const topRecs = books.slice(0, 6);
+  html += `<div class="cur-section-title">📚 키워드 추천도서 <span class="cur-section-badge" style="background:#EEF2FF;color:#6366F1">국립중앙도서관 소장</span></div>`;
+  if(topRecs.length) {
+    html += `<div class="cur-saseo-grid" id="curRecGrid">`;
+    topRecs.forEach((b, i) => {
+      const aladinHref = `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchWord=${encodeURIComponent(b.title)}`;
+      html += `<a class="cur-rec-card" href="${_e(b.detail_link||aladinHref)}" target="_blank" rel="noopener" style="text-decoration:none;display:block" id="curRecCard${i}">
+        <div class="cur-rec-ph" id="curRecPh${i}">📖</div>
+        <div class="cur-rec-body">
+          <div class="cur-rec-title">${_e(b.title)}</div>
+          <div class="cur-rec-author">${_e(b.author)}</div>
+          <span class="cur-rec-cat">${_e(b.kdc_name&&b.kdc_name!=='-'?b.kdc_name:kdc.name)}</span>
+        </div>
+      </a>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div style="text-align:center;padding:28px;color:var(--gray);background:var(--white);border-radius:12px;margin-bottom:8px">검색 결과가 없습니다</div>`;
+  }
+  html += `<div class="cur-section-title">🔍 소장자료 검색결과
+    <span class="cur-total">${pg.total?pg.total.toLocaleString()+'건':''}</span>
+  </div>`;
+  books.forEach(b => {
+    const href = b.detail_link||'#';
+    html += `<a class="cur-search-item" href="${_e(href)}" target="_blank" rel="noopener">
+      <div class="cur-si-title">${_e(b.title)}</div>
+      <div class="cur-si-meta">
+        <span>${_e(b.author)}</span>
+        <span>${_e(b.publisher)}</span>
+        <span>${_e(b.year)}</span>
+      </div>
+      ${b.kdc_name&&b.kdc_name!=='-'?`<span class="cur-si-kdc">${_e(b.kdc_name)}</span>`:''}
+    </a>`;
+  });
+
+  // 페이지네이션
+  if(pg.total_pages > 1) {
+    const W=5, half=Math.floor(W/2);
+    let s=Math.max(1,pg.page-half), en=Math.min(pg.total_pages,s+W-1);
+    if(en-s<W-1) s=Math.max(1,en-W+1);
+    html += `<div class="cur-pagination">
+      <button class="cur-pg-btn" onclick="curGoPage(${pg.page-1})" ${pg.page<=1?'disabled':''}>‹</button>`;
+    for(let p=s;p<=en;p++) html+=`<button class="cur-pg-btn${p===pg.page?' active':''}" onclick="curGoPage(${p})">${p}</button>`;
+    html += `<button class="cur-pg-btn" onclick="curGoPage(${pg.page+1})" ${pg.page>=pg.total_pages?'disabled':''}>›</button>
+    </div>`;
+  }
+
+  body.innerHTML = html;
+
+  // 추천도서 표지 비동기 로드
+  topRecs.forEach((b, i) => {
+    const query = `${b.title} ${b.author}`;
+    getCover(query, '').then(url => {
+      if (!url) return;
+      const ph = document.getElementById(`curRecPh${i}`);
+      if (!ph) return;
+      const img = document.createElement('img');
+      img.className = 'cur-rec-cover';
+      img.src = url;
+      img.alt = b.title;
+      img.loading = 'lazy';
+      img.onerror = () => img.remove();
+      ph.replaceWith(img);
+    });
+  });
+}
+
+function curGoPage(p) { CUR.page=p; curFetch(); }
+function _e(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ══════════════════════════════════════════
+   PAGE: LIBRARIAN  (사서에게 물어보세요 AI 검색)
+   ══════════════════════════════════════════ */
+const LIB = {
+  API_BASE: window.location.hostname === 'localhost' ? 'http://localhost:8000' : '',
+  pollTimer: null,
+};
+
+function renderLibrarian() {
+  document.getElementById('pg-librarian').innerHTML=`
+  <div style="background:linear-gradient(135deg,#0F766E,#0D9488);padding:28px 24px 24px;color:#fff;border-radius:0 0 24px 24px">
+    <div style="font-size:2.2rem;margin-bottom:8px">📖</div>
+    <div style="font-family:'Black Han Sans',sans-serif;font-size:1.6rem;margin-bottom:6px">사서에게 물어보세요</div>
+    <div style="font-size:.87rem;opacity:.9;line-height:1.55">국립중앙도서관 Q&A DB + 정보나루 DB<br>자연어로 무엇이든 물어보세요</div>
+  </div>
+  <div class="inner" style="padding-top:20px">
+    <div id="libCrawlStatus"></div>
+    <form id="libForm" onsubmit="libAsk(event)">
+      <div class="lib-search-box">
+        <textarea id="libInput" placeholder="예: 심리적으로 우울할 때 읽을 책 추천해주세요. 또는 환경 문제를 다룬 청소년 도서가 있나요?" rows="2"></textarea>
+        <button type="submit" id="libSubmitBtn">질문하기</button>
+      </div>
+    </form>
+    <div class="lib-tags">
+      <span style="font-size:.75rem;color:var(--gray)">추천 질문</span>
+      ${[
+        '우울증 도움 도서',
+        '인공지능 미래 관련 도서',
+        '청소년 진로 추천 도서',
+        '경제 공부 입문서',
+        '한국 근현대사 도서',
+        '환경 문제 관련 책',
+      ].map(t=>`<button class="lib-tag" onclick="libQuick('${t}')">${t}</button>`).join('')}
+    </div>
+    <div id="libBody"></div>
+  </div>`;
+
+  libCheckStatus();
+}
+
+async function libCheckStatus() {
+  const box = document.getElementById('libCrawlStatus');
+  if(!box) return;
+  try {
+    const res = await fetch(`${LIB.API_BASE}/api/librarian/stats`, {signal: AbortSignal.timeout(4000)});
+    if(!res.ok) throw new Error();
+    const d = await res.json();
+
+    if(d.db_count === 0 && !d.crawl_running) {
+      box.innerHTML=`
+        <div class="lib-crawl-card">
+          <div class="lib-crawl-title">📥 지식정보 DB 초기 수집 필요</div>
+          <div class="lib-crawl-desc">
+            국립중앙도서관 사서 Q&A 데이터 <strong>약 5,910건</strong>을 처음 한 번만 수집합니다.<br>
+            수집 후 로컬 DB에 저장되어 빠른 검색이 가능합니다.
+          </div>
+          <button class="lib-crawl-btn" onclick="libStartCrawl(this)">🔄 DB 수집 시작</button>
+        </div>`;
+    } else if(d.crawl_running) {
+      box.innerHTML=`<div class="lib-progress" id="libProgressBox">수집 중... <span id="libProgressMsg"></span>
+        <div class="lib-progress-bar"><div class="lib-progress-fill" id="libProgressFill" style="width:5%"></div></div></div>`;
+      libPollCrawl();
+    } else {
+      box.innerHTML=`<div style="font-size:.78rem;color:#0F766E;margin-bottom:12px;padding:6px 10px;background:#F0FDFA;border-radius:8px">
+        ✅ DB 수집 완료 · <strong>${d.db_count.toLocaleString()}건</strong> · 자연어 검색 가능</div>`;
+    }
+  } catch(e) {
+    const isLocal = window.location.hostname === 'localhost'
+                 || window.location.hostname === '127.0.0.1'
+                 || window.location.protocol === 'file:';
+    box.innerHTML = isLocal
+      ? `<div class="lib-crawl-card">
+          <div class="lib-crawl-title">⚠️ 로컬 서버 연결 필요</div>
+          <div class="lib-crawl-desc">터미널에서 서버를 먼저 실행해 주세요:<br>
+            <code style="background:#FEF3C7;padding:4px 10px;border-radius:6px;display:inline-block;margin-top:6px;font-size:.8rem">
+              cd ~/mbtibooktalk/server && ./run.sh
+            </code>
+          </div>
+        </div>`
+      : `<div class="lib-crawl-card">
+          <div class="lib-crawl-title">⚠️ 일시적 응답 지연</div>
+          <div class="lib-crawl-desc">사서 응답 서버에 일시적인 문제가 발생하였습니다.<br>
+            잠시 후 다시 시도해 주시거나, 도서관 담당자에게 문의해 주시기 바랍니다.</div>
+        </div>`;
+  }
+}
+
+async function libStartCrawl(btn) {
+  btn.disabled = true;
+  btn.textContent = '수집 시작 중...';
+  try {
+    await fetch(`${LIB.API_BASE}/api/crawl/start`, {method:'POST'});
+    document.getElementById('libCrawlStatus').innerHTML=`
+      <div class="lib-progress" id="libProgressBox">수집 시작됨
+        <div class="lib-progress-bar"><div class="lib-progress-fill" id="libProgressFill" style="width:2%"></div></div></div>`;
+    libPollCrawl();
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = '🔄 DB 수집 시작';
+  }
+}
+
+function libPollCrawl() {
+  if(LIB.pollTimer) clearInterval(LIB.pollTimer);
+  LIB.pollTimer = setInterval(async () => {
+    try {
+      const res = await fetch(`${LIB.API_BASE}/api/crawl/status`);
+      const d = await res.json();
+      const msgEl = document.getElementById('libProgressMsg');
+      const fillEl = document.getElementById('libProgressFill');
+      const boxEl  = document.getElementById('libProgressBox');
+      if(msgEl) msgEl.textContent = d.message || '';
+      if(fillEl && d.total > 0) fillEl.style.width = Math.round(d.done/d.total*100)+'%';
+      if(!d.crawl_running) {
+        clearInterval(LIB.pollTimer);
+        libCheckStatus();
+      }
+    } catch(e) { clearInterval(LIB.pollTimer); }
+  }, 2500);
+}
+
+function libQuick(q) {
+  const ta = document.getElementById('libInput');
+  if(ta) { ta.value = q; libAsk(); }
+}
+
+async function libAsk(e) {
+  if(e) e.preventDefault();
+  const ta = document.getElementById('libInput');
+  const query = ta ? ta.value.trim() : '';
+  if(!query) return;
+
+  const body = document.getElementById('libBody');
+  const btn  = document.getElementById('libSubmitBtn');
+  if(!body) return;
+
+  body.innerHTML=`<div class="lib-loading"><div class="spinner"></div><p>사서가 자료를 찾는 중...</p></div>`;
+  if(btn) btn.disabled = true;
+
+  try {
+    const res = await fetch(`${LIB.API_BASE}/api/librarian/ask`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({query, top_k: 8}),
+      signal: AbortSignal.timeout(30000),
+    });
+    if(!res.ok) throw new Error(`서버 오류 (${res.status})`);
+    const data = await res.json();
+    libRender(data);
+  } catch(err) {
+    const isConn = err.name==='TypeError'||err.name==='AbortError';
+    const isLocal = window.location.hostname === 'localhost'
+                 || window.location.hostname === '127.0.0.1'
+                 || window.location.protocol === 'file:';
+    const connMsg = isLocal
+      ? '로컬 서버가 실행 중인지 확인해 주세요.<br><code style="background:#FEF3C7;padding:4px 8px;border-radius:6px;font-size:.8rem">cd ~/mbtibooktalk/server && ./run.sh</code>'
+      : '사서 응답 서버에 일시적인 문제가 발생하였습니다. 잠시 후 다시 시도해 주시기 바랍니다.';
+    body.innerHTML=`<div class="lib-crawl-card">
+      <div class="lib-crawl-title">${isConn?'⚠️ 서버 연결 실패':'⚠️ 오류 발생'}</div>
+      <div class="lib-crawl-desc">${isConn ? connMsg : _e(err.message)}</div>
+    </div>`;
+  } finally {
+    if(btn) btn.disabled = false;
+  }
+}
+
+function libRender(data) {
+  const body = document.getElementById('libBody');
+  const claudeBadge = data.used_claude
+    ? '<span class="lib-resp-badge">Claude AI</span>'
+    : '<span class="lib-resp-badge" style="background:#FEF3C7;color:#92400E">기본 요약</span>';
+
+  // 가중치 뱃지 (벡터:키워드)
+  const w = data.weights || {vector:0.7, keyword:0.3};
+  const wBadge = `<span class="lib-resp-badge" style="background:#EFF6FF;color:#1D4ED8">
+    가중치 V${Math.round(w.vector*10)}:K${Math.round(w.keyword*10)}</span>`;
+
+  // 3단계 신뢰도 뱃지 (HIGH/MID/LOW) + 점수 수치
+  const tier = data.response_tier || (data.response_mode === 'general' ? 'low' : 'high');
+  const scoreVal = data.norm_score != null
+    ? `norm:${(data.norm_score*100).toFixed(0)}%`
+    : `score:${(data.top_score||0).toFixed(4)}`;
+  const tierBadge = tier === 'high'
+    ? `<span class="lib-resp-badge" style="background:#ECFDF5;color:#065F46">HIGH · 출처 인용</span>`
+    : tier === 'mid'
+    ? `<span class="lib-resp-badge" style="background:#EFF6FF;color:#1E40AF">MID · 보완 답변</span>`
+    : `<span class="lib-resp-badge" style="background:#FEF2F2;color:#B91C1C">LOW · 일반 안내</span>`;
+  const scoreBadge = `<span class="lib-resp-badge" style="background:#F3F4F6;color:#374151;font-weight:500">${scoreVal}</span>`;
+
+  // 하위 호환
+  const isGeneral = (tier === 'low');
+
+  // 신뢰도 구간별 상단 배너
+  const noticeBanner = tier === 'low'
+    ? `<div style="background:#FFF7ED;border-left:4px solid #F59E0B;padding:10px 14px;
+         border-radius:8px;margin-bottom:12px;font-size:.82rem;line-height:1.55;color:#7C2D12">
+         <strong>※ 안내</strong> &nbsp;국립중앙도서관 Q&A DB에 직접 매칭되는 사례가 없어,
+         사서의 일반 지식 기반으로 안내해 드립니다. 시설·이용 관련 상세 사항은
+         도서관 안내데스크 또는 홈페이지에서 최종 확인을 권장합니다.<br>
+         ▸ <a href="https://www.nl.go.kr/ask/" target="_blank" rel="noopener"
+              style="color:#B45309;text-decoration:underline">국립중앙도서관 「사서에게 물어보세요」 바로가기 →</a>
+       </div>`
+    : tier === 'mid'
+    ? `<div style="background:#EFF6FF;border-left:4px solid #3B82F6;padding:10px 14px;
+         border-radius:8px;margin-bottom:12px;font-size:.82rem;line-height:1.55;color:#1E3A5F">
+         <strong>※ 안내</strong> &nbsp;참고 자료를 기반으로 보완 답변드립니다.
+         DB 매칭 신뢰도가 부분적이므로 중요한 사항은 도서관 안내데스크에서 최종 확인을 권장합니다.
+       </div>`
+    : '';
+
+  // 답변 본문의 [n] 인용 번호를 강조 표시 (HTML 이스케이프 후 정규식 치환)
+  const safeText = _e(data.response).replace(
+    /\[(\d{1,2})\]/g,
+    '<span class="lib-cite" data-n="$1">[$1]</span>'
+  );
+
+  const _lastQuery = data.query || '';
+  const _lastTier  = tier;
+  const _lastTscore = data.top_score || 0;
+  const _lastNscore = data.norm_score || 0;
+
+  let html = noticeBanner + `
+    <div class="lib-response-card">
+      <div class="lib-resp-header">
+        <span class="lib-resp-icon">📚</span>
+        <span class="lib-resp-title">사서의 답변</span>
+        ${claudeBadge}
+        ${tierBadge}
+        ${scoreBadge}
+        ${wBadge}
+        ${data.data4lib_count > 0
+          ? `<span class="lib-resp-badge" style="background:#FDF4FF;color:#7E22CE">정보나루 ${data.data4lib_count}건</span>`
+          : ''}
+      </div>
+      <div class="lib-resp-text">${safeText}</div>
+      <div id="lib-feedback-area" style="display:flex;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid #E5E7EB">
+        <span style="font-size:.78rem;color:#6B7280;align-self:center">이 답변이 도움이 됐나요?</span>
+        <button onclick="libFeedback(true,'${_e(_lastQuery)}','${_lastTier}',${_lastTscore},${_lastNscore})"
+          style="font-size:.78rem;padding:4px 12px;border-radius:20px;border:1px solid #10B981;
+                 background:#F0FDF4;color:#065F46;cursor:pointer">👍 도움이 됐어요</button>
+        <button onclick="libFeedback(false,'${_e(_lastQuery)}','${_lastTier}',${_lastTscore},${_lastNscore})"
+          style="font-size:.78rem;padding:4px 12px;border-radius:20px;border:1px solid #EF4444;
+                 background:#FEF2F2;color:#B91C1C;cursor:pointer">👎 부정확해요</button>
+      </div>
+    </div>`;
+
+  // 도서 추천 카드 (Claude 답변에서 추출한 『도서명』 → 국중도 검색 API 메타데이터)
+  if(data.book_cards && data.book_cards.length) {
+    html += `<div class="lib-sources-title">📘 추천 도서 <span style="color:#0F766E;font-size:.8rem;font-weight:700">${data.book_cards.length}종</span></div>`;
+    html += `<div style="display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:14px">`;
+    data.book_cards.forEach(b => {
+      const link = b.detail_link || '#';
+      html += `<div class="lib-source-card" style="border-left:4px solid #0D9488">
+        <div class="lib-src-q">『${_e(b.title)}』</div>
+        <div style="font-size:.78rem;color:#374151;line-height:1.6;margin-top:4px">
+          ${_e(b.author||'-')} · ${_e(b.publisher||'-')} (${_e(b.year||'-')})<br>
+          분류: ${_e(b.kdc_name||'-')} · 청구기호: ${_e(b.call_no||'-')}
+        </div>
+        <div style="margin-top:8px">
+          <a href="${_e(link)}" target="_blank" rel="noopener"
+             style="font-size:.75rem;color:#0F766E;text-decoration:underline">국립중앙도서관 상세 →</a>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  if(data.sources && data.sources.length) {
+    const citedSet = new Set(data.cited_indices || []);
+    const srcTitle = tier === 'low' ? '📎 함께 참고한 유사 Q&A (직접 매칭 아님)'
+                   : tier === 'mid' ? '📎 부분 매칭 Q&A 자료 (보강 참고용)'
+                   : '📎 참고한 Q&A 자료';
+    html += `<div class="lib-sources-title">${srcTitle} <span style="color:#0F766E;font-size:.8rem;font-weight:700">${data.sources.length}건</span></div>`;
+    data.sources.forEach((s, idx) => {
+      const num = idx + 1;
+      const typeLabel = s.search_type==='hybrid'?'하이브리드':s.search_type==='vector'?'벡터':'키워드';
+      const isCited = citedSet.has(num);
+      const citeMark = isCited
+        ? `<span class="lib-src-badge" style="background:#FEF3C7;color:#92400E">본문 인용 [${num}]</span>`
+        : `<span class="lib-src-badge" style="background:#F3F4F6;color:#4B5563">[${num}]</span>`;
+      const sourceLink = s.source_url
+        ? `<a href="${_e(s.source_url)}" target="_blank" rel="noopener"
+              style="font-size:.72rem;color:#0F766E;text-decoration:underline">원문 보기 →</a>`
+        : '';
+      html += `<div class="lib-source-card" onclick="if(event.target.tagName==='A')return;const a=this.querySelector('.lib-src-a'),t=this.querySelector('.lib-src-toggle');a.classList.toggle('expanded');t.textContent=a.classList.contains('expanded')?'▲ 접기':'▼ 더 보기'">
+        <div class="lib-src-q">${citeMark} ${_e(s.question)}</div>
+        <div class="lib-src-a">${_e(s.answer)}</div>
+        <div class="lib-src-toggle">▼ 더 보기</div>
+        <div class="lib-src-meta">
+          ${s.subject?`<span class="lib-src-badge lib-src-subj">${_e(s.subject)}</span>`:''}
+          <span class="lib-src-badge lib-src-type">${typeLabel}</span>
+          ${s.answer_lib?`<span style="font-size:.68rem;color:var(--gray)">${_e(s.answer_lib)}</span>`:''}
+          ${s.answer_date?`<span style="font-size:.68rem;color:var(--gray)">${_e(s.answer_date)}</span>`:''}
+          ${sourceLink}
+        </div>
+      </div>`;
+    });
+  } else {
+    html += `<div class="lib-empty"><div style="font-size:2rem;margin-bottom:8px">🔍</div>관련 자료를 찾지 못했습니다.<br>다른 키워드로 시도해 보세요.</div>`;
+  }
+
+  body.innerHTML = html;
+}
+
+async function libFeedback(helpful, query, tier, topScore, normScore) {
+  try {
+    await fetch(`${LIB.API_BASE}/api/librarian/feedback`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        query, response_tier: tier,
+        top_score: topScore, norm_score: normScore,
+        helpful
+      })
+    });
+  } catch(e) { /* 피드백 실패는 조용히 무시 */ }
+  const area = document.getElementById('lib-feedback-area');
+  if (area) {
+    area.innerHTML = `
+      <span style="font-size:.85rem;color:#059669;font-weight:600">피드백 감사합니다. 🙏</span>
+      <button onclick="libGoBack()"
+        style="margin-left:8px;font-size:.78rem;padding:4px 14px;border-radius:20px;
+               border:1px solid #6B7280;background:#F9FAFB;color:#374151;cursor:pointer">
+        ↩ 다시 돌아가기
+      </button>`;
+  }
+}
+
+function libGoBack() {
+  const ta = document.getElementById('libInput');
+  if (ta) {
+    ta.value = '';
+    ta.focus();
+    ta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  const body = document.getElementById('libBody');
+  if (body) body.innerHTML = '';
+}
+
+/* ══════════════════════════════════════════
+   PAGE: LANDING
+   ══════════════════════════════════════════ */
+function renderLanding() {
+  document.getElementById('pg-landing').innerHTML=`
+  <div class="landing-wrap">
+    <div class="deco-shape shape-1"></div>
+    <div class="deco-shape shape-2"></div>
+    <div class="deco-shape shape-3"></div>
+    <div class="deco-shape shape-4"></div>
+    <div class="logo-area">
+      <span class="logo-mbti">MBTI</span>
+      <div class="logo-booktalk"><span class="logo-book">Book</span><span class="logo-talk">Talk</span></div>
+    </div>
+    <div class="subtitle-banner">같은 MBTI끼리 함께 나누는 책이야기</div>
+    <div class="btn-bubble">
+      <button class="main-btn btn-green" onclick="nav('test')">
+        <div class="btn-icon">🔍</div>
+        <div class="btn-text">
+          <span class="btn-line1">MBTI 검사로</span>
+          <span class="btn-line2">나는 MBTI 검사가 필요해요!</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </button>
+      <button class="main-btn btn-yellow" onclick="nav('select')">
+        <div class="btn-icon">👥</div>
+        <div class="btn-text">
+          <span class="btn-line1">결과를 이미 알고 있다면</span>
+          <span class="btn-line2">나는 MBTI를 알고 있어요!</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </button>
+      <button class="main-btn" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)" onclick="nav('curation')">
+        <div class="btn-icon">🏛️</div>
+        <div class="btn-text">
+          <span class="btn-line1">국립중앙도서관 사서 추천</span>
+          <span class="btn-line2">주제별 도서 큐레이션</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </button>
+      <button class="main-btn" style="background:linear-gradient(135deg,#0F766E,#0D9488)" onclick="nav('librarian')">
+        <div class="btn-icon">🔍</div>
+        <div class="btn-text">
+          <span class="btn-line1">AI 사서 · 자연어 검색</span>
+          <span class="btn-line2">사서에게 물어보세요 Q&A</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </button>
+    </div>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════
+   PAGE: TEST
+   ══════════════════════════════════════════ */
+function renderTest() {
+  document.getElementById('pg-test').innerHTML=`
+  <div class="hero-band" style="background:linear-gradient(135deg,#8DC487,#4BBFB0)">
+    <div class="hero-icon">🧠</div>
+    <div class="hero-title">나의 MBTI 찾기</div>
+    <div class="hero-sub">간단한 검사로 나의 성격 유형을 알아보고<br>같은 MBTI 친구들과 책을 나눠요!</div>
+  </div>
+  <div class="inner">
+    <div style="font-family:'Black Han Sans',sans-serif;font-size:1.05rem;margin-bottom:12px">📌 나는 어디에 해당하나요?</div>
+    <div class="age-grid">
+      <div class="age-card active" id="age-child" onclick="pickAge('child',this)">
+        <div class="age-icon">🧒</div><div class="age-lbl">어린이</div><div class="age-sub">초등학생</div>
+      </div>
+      <div class="age-card" id="age-teen" onclick="pickAge('teen',this)">
+        <div class="age-icon">🧑‍🎓</div><div class="age-lbl">청소년</div><div class="age-sub">중·고등학생</div>
+      </div>
+      <div class="age-card" id="age-adult" onclick="pickAge('adult',this)">
+        <div class="age-icon">🧑</div><div class="age-lbl">성인</div><div class="age-sub">대학생·성인</div>
+      </div>
+    </div>
+    <div class="test-link-card">
+      <div style="font-size:2.8rem;margin-bottom:12px">🔍</div>
+      <div style="font-weight:700;font-size:1.05rem;margin-bottom:8px">MBTI 검사 시작하기</div>
+      <div style="font-size:.87rem;color:#666;line-height:1.6;margin-bottom:18px" id="testDesc">
+        AI 기반 MBTI 검사로 나의 성격 유형을 알아보세요.<br>검사 후 결과를 가지고 돌아오면 맞춤 도서를 추천해드려요!
+      </div>
+      <a id="testLink" href="https://gemini.google.com/share/d0e38d084f01" target="_blank" class="test-ext-btn">
+        🚀 MBTI 검사 시작하기
+      </a>
+    </div>
+    <div class="step-guide">
+      <div style="font-weight:700;font-size:.97rem;margin-bottom:14px">📋 이용 방법</div>
+      ${['위 버튼을 눌러 MBTI 검사 페이지로 이동해요','질문에 솔직하게 답하면 유형을 알 수 있어요','결과 확인 후 이 페이지로 돌아오세요','아래 버튼을 눌러 내 유형을 선택하세요'].map((t,i)=>`
+      <div class="guide-step"><div class="guide-num">${i+1}</div><div class="guide-txt">${t}</div></div>`).join('')}
+    </div>
+    <div class="divider">검사를 완료했다면</div>
+    <div class="result-card">
+      <h3>✅ 내 MBTI 결과를 알았어요!</h3>
+      <p>검사를 완료했나요?<br>아래 버튼을 눌러 내 유형을 선택해 보세요.</p>
+      <button class="result-btn" onclick="nav('select')">내 MBTI 유형 선택하기 →</button>
+    </div>
+  </div>`;
+}
+function pickAge(age,el){
+  document.querySelectorAll('.age-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  const msgs={child:'재미있는 그림과 쉬운 문장으로 구성된 MBTI 검사예요!',teen:'청소년을 위한 MBTI 검사예요. 진로 탐색에 도움이 돼요!',adult:'AI 기반 MBTI 검사로 나의 성격 유형을 알아보세요.'};
+  document.getElementById('testDesc').textContent=msgs[age];
+}
+
+/* ══════════════════════════════════════════
+   PAGE: TYPE SELECT
+   ══════════════════════════════════════════ */
+let selectedType=null;
+function renderSelect() {
+  const GROUPS=[
+    {key:'NT',label:'분석가',emoji:'🔬',types:['INTJ','INTP','ENTJ','ENTP']},
+    {key:'NF',label:'외교관',emoji:'🌟',types:['INFJ','INFP','ENFJ','ENFP']},
+    {key:'SJ',label:'관리자',emoji:'📋',types:['ISTJ','ISFJ','ESTJ','ESFJ']},
+    {key:'SP',label:'탐험가',emoji:'🚀',types:['ISTP','ISFP','ESTP','ESFP']},
+  ];
+  selectedType=null;
+  document.getElementById('pg-select').innerHTML=`
+  <div class="hero-band" style="background:linear-gradient(135deg,#FFB830,#FF7043)">
+    <div class="hero-icon">👥</div>
+    <div class="hero-title">내 MBTI 유형 선택</div>
+    <div class="hero-sub">나의 유형을 선택하면<br>같은 유형 친구들의 추천 도서를 볼 수 있어요!</div>
+    <div style="font-size:.82rem;opacity:.9;margin-top:8px">🌟 전체 참가자 ${Object.keys(MBTI_DATA).reduce((s,t)=>s+getParticipantCount(t),0)}명</div>
+  </div>
+  <div class="inner">
+    <div class="sel-preview" id="selPreview">
+      <div class="sel-badge" id="selBadge"></div>
+      <div class="sel-info"><h3 id="selName">유형을 선택해 주세요</h3><p id="selDesc">아래 카드를 클릭하세요</p></div>
+    </div>
+    ${GROUPS.map(g=>`
+    <div class="group-section">
+      <div class="group-badge" style="background:${GROUP_INFO[g.key].color}20;color:${GROUP_INFO[g.key].color}">
+        ${g.emoji} ${g.label} 그룹
+      </div>
+      <div class="type-grid">
+        ${g.types.map(t=>{const d=MBTI_DATA[t];return`
+        <div class="type-card" id="tc-${t}" style="--sel-c:${d.color}" onclick="pickType('${t}')">
+          <div class="type-code" style="color:${d.color}">${t}</div>
+          <div class="type-name">${d.name}</div>
+          ${_participantBadge(t)}
+          <div class="type-char">${(typeof CHARS!=='undefined'&&CHARS[t])||`<div style="font-size:2rem;padding:12px 0">${d.emoji}</div>`}</div>
+        </div>`;}).join('')}
+      </div>
+    </div>`).join('')}
+    <button class="go-btn" id="goBtn" onclick="goToRoom()">📚 이 유형 방으로 들어가기</button>
+  </div>`;
+}
+function pickType(type) {
+  document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('tc-'+type).classList.add('selected');
+  selectedType=type;
+  const d=MBTI_DATA[type];
+  const prev=document.getElementById('selPreview');
+  prev.classList.add('on');
+  const badge=document.getElementById('selBadge');
+  badge.style.background=d.color;
+  badge.textContent=type;
+  document.getElementById('selName').textContent=`${type} · ${d.name}`;
+  document.getElementById('selDesc').textContent=d.desc.slice(0,55)+'…';
+  const btn=document.getElementById('goBtn');
+  btn.classList.add('ready');
+  setTimeout(()=>btn.scrollIntoView({behavior:'smooth',block:'nearest'}),300);
+}
+function goToRoom() {
+  if(!selectedType)return;
+  lsSet('myMBTI',selectedType);
+  nav('room',{type:selectedType,tab:'curated'});
+}
+
+/* ══════════════════════════════════════════
+   PAGE: TYPE ROOM
+   ══════════════════════════════════════════ */
+let pendingBook=null;
+
+function renderRoom() {
+  if(roomUnsub){roomUnsub();roomUnsub=null;}
+  const d=MBTI_DATA[state.type];
+  const ALL=Object.keys(MBTI_DATA);
+
+  document.getElementById('pg-room').innerHTML=`
+  <!-- type switcher -->
+  <div class="type-switch" id="typeSwitchBar">
+    ${ALL.map(t=>`<button class="type-pill${t===state.type?' active':''}"
+      style="${t===state.type?'background:'+MBTI_DATA[t].color+';border-color:'+MBTI_DATA[t].color:''}"
+      onclick="switchType('${t}')">${MBTI_DATA[t].emoji} ${t}</button>`).join('')}
+  </div>
+
+  <!-- hero -->
+  <div class="room-hero" id="roomHero" style="background:linear-gradient(135deg,${d.color}CC,${d.color})">
+    <div class="room-hero-bg">${d.emoji}</div>
+    <div class="room-type">${state.type}</div>
+    <div class="room-korean">${d.emoji} ${d.name}</div>
+    <div class="room-traits">${d.traits.map(t=>`<span class="trait">${t}</span>`).join('')}</div>
+    <div class="room-stats">
+      <div><div class="stat-n" id="statBooks">-</div><div class="stat-l">추천 도서</div></div>
+      <div><div class="stat-n" id="statHearts">-</div><div class="stat-l">총 하트</div></div>
+      <div><div class="stat-n" id="statUsers">-</div><div class="stat-l">추천자 수</div></div>
+    </div>
+    <div class="live-dot-wrap"><div class="live-pill">
+      <span class="live-dot"></span>
+      <span>실시간 공유 중</span>
+    </div></div>
+  </div>
+
+  <!-- tabs -->
+  <div class="tab-bar">
+    <div class="tab${state.tab==='curated'?' active':''}" onclick="switchTab('curated')">📚 큐레이션</div>
+    <div class="tab${state.tab==='community'?' active':''}" onclick="switchTab('community')">👥 커뮤니티</div>
+    <div class="tab${state.tab==='search'?' active':''}" onclick="switchTab('search')">+ 추천하기</div>
+    <div class="tab${state.tab==='photo'?' active':''}" onclick="switchTab('photo')">📸 인증샷</div>
+  </div>
+
+  <div class="inner">
+    <!-- curated tab -->
+    <div id="tab-curated" style="display:${state.tab==='curated'?'block':'none'}">
+      <div style="margin-bottom:14px">
+        <div style="font-size:.79rem;color:#555;line-height:1.75;background:#F8F9FF;border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm);margin-bottom:10px;border-left:4px solid #7986CB">
+          <strong style="font-size:.82rem;color:#3949AB">📖 큐레이션 도서 선정 방법론</strong><br>
+          MBTI 16유형별 <strong>핵심 인지 기능(Cognitive Functions) 이론</strong>을 바탕으로, 각 유형의 지배적 사고·감정·인식 방식과 도서의 핵심 메시지를 매칭하여 선정했습니다.<br>
+          <span style="display:inline-block;margin-top:6px"><strong>① 인지 기능 부합도</strong> — 해당 유형의 주기능(Dominant)·부기능(Auxiliary)과 책의 핵심 주제 일치 여부</span><br>
+          <strong>② 가치관·관심 영역</strong> — 유형별 선호 사고 방식(분석/공감/실행/탐구)과 도서 내용의 연관성<br>
+          <strong>③ 국내 독자 접근성</strong> — 2019–2024년 출간·번역본 중 국내 독자 평점·판매 지표 반영
+        </div>
+        <div style="font-size:.83rem;color:var(--gray);line-height:1.6;background:var(--white);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow-sm);border-left:4px solid ${d.color}">
+          <strong style="color:${d.color}">📌 ${state.type} 선정 기준</strong><br>${d.selectReason}
+        </div>
+      </div>
+      <div class="book-grid" id="curatedGrid"></div>
+    </div>
+
+    <!-- community tab -->
+    <div id="tab-community" style="display:${state.tab==='community'?'block':'none'}">
+      <div class="comm-search-row">
+        <input class="s-input" id="commSearchInput" placeholder="제목·저자·추천 한줄평으로 검색" onkeydown="if(event.key==='Enter')doCommSearch()" oninput="if(!this.value.trim())resetCommSearch()">
+        <button class="s-btn" onclick="doCommSearch()">검색</button>
+      </div>
+      <p style="font-size:.74rem;color:#aaa;margin:-8px 0 12px;line-height:1.5">
+        💡 <strong>추천 한줄평</strong>이란? 커뮤니티 구성원이 책을 추천하면서 남긴 한줄 추천 이유입니다.<br>제목·저자·출판사·추천 한줄평 전체를 대상으로 검색합니다.
+      </p>
+      <div id="communityContent"><div class="loader"><span></span><span></span><span></span></div></div>
+      <button onclick="switchTab('search')"
+        style="display:block;width:100%;padding:14px;border-radius:50px;background:var(--yellow);color:#fff;font-weight:700;font-size:1rem;border:none;cursor:pointer;margin-bottom:28px">
+        + 내가 읽은 책 추천하기
+      </button>
+    </div>
+
+    <!-- search tab -->
+    <div id="tab-search" style="display:${state.tab==='search'?'block':'none'}">
+      <p style="font-size:.87rem;color:var(--gray);margin-bottom:16px;line-height:1.55">
+        📖 <strong style="color:${d.color}">${state.type} ${d.name}</strong> 유형 친구들에게 책을 추천해 보세요!<br>
+        검색 후 한줄평을 남기면 커뮤니티 방에 실시간으로 공유됩니다.
+      </p>
+      <div class="search-row">
+        <select class="s-filter" id="srchFilter" onchange="updateSearchPlaceholder()">
+          <option value="all">전체</option>
+          <option value="title">제목</option>
+          <option value="author">저자</option>
+          <option value="publisher">출판사</option>
+        </select>
+        <input class="s-input" id="srchInput" placeholder="책 제목, 저자, 출판사 검색" onkeydown="if(event.key==='Enter')doSearch()">
+        <button class="s-btn" onclick="doSearch()">검색</button>
+      </div>
+      <div id="srchResults"></div>
+      <div class="rec-form" id="recForm">
+        <div style="font-weight:700;font-size:.97rem;margin-bottom:13px">✍️ 추천 글 작성</div>
+        <div class="rec-preview">
+          <img class="pr-cover" id="prCover" src="" alt="">
+          <div><div class="pr-title" id="prTitle"></div><div class="pr-author" id="prAuthor"></div></div>
+        </div>
+        <label class="form-lbl">💬 이 책을 추천하는 이유 (선택)</label>
+        <textarea class="form-ta" id="recTa" placeholder="이 책이 이 MBTI 유형에게 왜 잘 맞는지 알려주세요!"></textarea>
+        <button class="form-sub" id="recSubBtn" onclick="submitRec()">📤 커뮤니티에 추천하기</button>
+      </div>
+    </div>
+
+    <!-- photo tab -->
+    <div id="tab-photo" style="display:${state.tab==='photo'?'block':'none'}">
+      <p style="font-size:.83rem;color:var(--gray);margin-bottom:14px;line-height:1.55">
+        📷 <strong style="color:${d.color}">${state.type} ${d.name}</strong> MBTI 네컷 인증샷을 만들어보세요!<br>
+        각 칸에서 <strong>카메라·앨범·책표지</strong> 중 선택해 채우세요.
+      </p>
+      <div class="necut-grid">
+        ${[0,1,2,3].map(i=>`<div class="upload-cell" id="uploadCell${i}">
+          <input type="file" id="photoCam${i}" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoUpload(${i},this)">
+          <input type="file" id="photoAlb${i}" accept="image/*" style="display:none" onchange="handlePhotoUpload(${i},this)">
+          <div class="upload-ph" id="uploadPh${i}">
+            <div class="photo-src-btns">
+              <label for="photoCam${i}" class="photo-src-btn">📷<small>카메라</small></label>
+              <label for="photoAlb${i}" class="photo-src-btn">🖼<small>앨범</small></label>
+              <button class="photo-src-btn" onclick="openBookCoverSearch(${i})">📖<small>책표지</small></button>
+            </div>
+            <div class="upload-slot-num">사진 ${i+1}</div>
+          </div>
+          <img id="uploadImg${i}" style="display:none;width:100%;height:100%;object-fit:cover">
+          <div class="upload-resel" id="uploadResel${i}" style="display:none">
+            <label for="photoCam${i}">📷</label>
+            <label for="photoAlb${i}">🖼</label>
+            <button onclick="openBookCoverSearch(${i})">📖</button>
+          </div>
+        </div>`).join('')}
+      </div>
+      <button class="compose-btn" style="margin-top:14px" onclick="composeNecut()">✨ 네컷 이미지 합성</button>
+
+      <!-- 완성된 이미지 미리보기 -->
+      <div id="photoPreview" style="display:none" class="photo-preview-wrap">
+        <div style="font-weight:700;font-size:.95rem;margin-bottom:12px;text-align:center">✨ 완성된 이미지</div>
+        <canvas id="photoCanvas" style="width:100%;border-radius:12px;display:block"></canvas>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="compose-btn" style="background:#5C6BC0" onclick="downloadComposed()">⬇️ 저장하기</button>
+          <button class="compose-btn" style="background:var(--orange)" onclick="shareComposed()">📤 공유하기</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+  // render curated — htc_* 누적 하트순 정렬
+  const grid=document.getElementById('curatedGrid');
+  const sortedCurated=[...MBTI_DATA[state.type].books]
+    .map((b,i)=>({b,i,cnt:lsGet('htc_'+(b.isbn||b.title||''),0)}))
+    .sort((a,z)=>z.cnt-a.cnt||a.i-z.i);
+  sortedCurated.forEach(({b},rank)=>{
+    const card=makeCard(b,'curated',null,rank);
+    grid.appendChild(card);
+    fetchCover(card.querySelector('.cover-wrap'),b.isbn,b.query||b.title);
+  });
+
+  // subscribe community
+  roomUnsub=subscribeRecs(state.type,books=>{
+    renderCommunity(books);
+    const users=new Set(books.map(b=>b.userKey)).size;
+    document.getElementById('statBooks').textContent=MBTI_DATA[state.type].books.length+books.length;
+    document.getElementById('statHearts').textContent=calcTotalHearts(state.type,books);
+    document.getElementById('statUsers').textContent=users;
+  });
+
+  pendingBook=null;
+}
+
+function switchType(type) {
+  state.type=type; lsSet('myMBTI',type);
+  renderRoom();
+}
+function switchTab(name) {
+  state.tab=name;
+  ['curated','community','search','photo'].forEach(t=>{
+    const el=document.getElementById('tab-'+t);
+    if(el)el.style.display=t===name?'block':'none';
+  });
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active',['curated','community','search','photo'][i]===name);
+  });
+  window.scrollTo(0,0);
+}
+
+function renderCommunity(books) {
+  const wrap=document.getElementById('communityContent');
+  if(!wrap)return;
+  if(!books.length){
+    wrap.innerHTML=`<div class="empty-box"><div class="empty-icon">📭</div><div class="empty-text">아직 ${state.type} 유형의 추천 도서가 없어요.<br>첫 번째 추천자가 되어 보세요! 🌟</div></div>`;
+    return;
+  }
+  const grid=document.createElement('div');
+  grid.className='book-grid';
+  books.forEach((b,i)=>{
+    const card=makeCard(b,'user',b.id||String(i));
+    grid.appendChild(card);
+    if(b.cover){const img=card.querySelector('img.cover-img');if(img)img.src=b.cover;}
+    else fetchCover(card.querySelector('.cover-wrap'),b.isbn,b.title);
+  });
+  wrap.innerHTML='';
+  wrap.appendChild(grid);
+}
+
+function makeCard(book, source, recId, rank) {
+  const hk='ht_'+(source==='user'?'r_'+state.type+'_'+(recId||book.isbn||book.title):book.isbn||book.title||'');
+  const hearted=lsGet(hk,false);
+  const hearts=source==='curated'?lsGet('htc_'+(book.isbn||book.title||''),0):(book.hearts||0);
+  let rankHtml='';
+  if(source==='curated'&&rank!=null){
+    const medals=['🥇','🥈','🥉'];
+    const cls=rank<3?['gold','silver','bronze'][rank]:'normal';
+    rankHtml=`<div class="rank-badge ${cls}">${rank<3?medals[rank]:rank+1}</div>`;
+  }
+  const card=document.createElement('div');
+  card.className='book-card';
+  card.innerHTML=`
+    <div class="cover-wrap" style="position:relative">
+      ${rankHtml}
+      ${book.cover?`<img class="cover-img" src="${book.cover}" alt="${book.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:``}
+      <div class="cover-ph" ${book.cover?'style="display:none"':''}>📚</div>
+    </div>
+    <div class="book-info">
+      <div class="book-title">${book.title}</div>
+      <div class="book-author">${book.author}</div>
+      <div class="book-foot">
+        <button class="hbtn${hearted?' hearted':''}" data-hk="${hk}" data-type="${source==='user'?state.type:''}" data-doc="${recId||''}" data-src="${source}"
+          onclick="event.stopPropagation();handleHeart(this)">
+          ${hearted?'❤️':'🤍'}<span class="hcnt">${hearts}</span>
+        </button>
+        <span class="badge ${source==='curated'?'badge-cur':'badge-usr'}">${source==='curated'?'큐레이션':'추천'}</span>
+      </div>
+      ${book.reason?`<div class="reason-snip">"${book.reason}"</div>`:book.review?`<div class="reason-snip">"${book.review}"</div>`:''}
+    </div>`;
+  card.onclick=()=>openBook(book);
+  return card;
+}
+
+/* 큐레이션 하트(htc_* 누적) + 커뮤니티 하트(recs) 합산 */
+function calcTotalHearts(type, communityBooks) {
+  const community = communityBooks.reduce((s,b)=>s+(b.hearts||0), 0);
+  const curated = (MBTI_DATA[type]?.books||[]).reduce((s,b)=>{
+    return s + lsGet('htc_'+(b.isbn||b.title||''), 0);
+  }, 0);
+  return community + curated;
+}
+
+/* ── 커뮤니티 자연어 검색 (TF-IDF 스코어링) ── */
+function _tokenize(text) {
+  return (text||'').toLowerCase()
+    .replace(/[^가-힣ᄀ-ᇿ㄰-㆏a-z0-9\s]/g,' ')
+    .split(/\s+/).filter(t=>t.length>0);
+}
+function _score(doc, queryTokens) {
+  const fields = [doc.title||'', doc.author||'', doc.review||'', doc.publisher||''];
+  const docText = fields.join(' ');
+  const docTokens = _tokenize(docText);
+  if(!docTokens.length) return 0;
+  let score = 0;
+  queryTokens.forEach(qt=>{
+    const tf = docTokens.filter(t=>t.includes(qt)).length / docTokens.length;
+    const titleBonus = _tokenize(doc.title||'').some(t=>t.includes(qt)) ? 2 : 0;
+    const authorBonus = _tokenize(doc.author||'').some(t=>t.includes(qt)) ? 1 : 0;
+    score += (tf * 10) + titleBonus + authorBonus;
+  });
+  return score;
+}
+let _allCommBooks = [];
+function doCommSearch() {
+  const q = (document.getElementById('commSearchInput')?.value||'').trim();
+  if(!q) { resetCommSearch(); return; }
+  const queryTokens = _tokenize(q);
+  if(!queryTokens.length) return;
+  const books = lsGet('recs_'+state.type, []);
+  _allCommBooks = books;
+  const scored = books
+    .map(b=>({b, s:_score(b, queryTokens)}))
+    .filter(x=>x.s>0)
+    .sort((a,z)=>z.s-a.s)
+    .map(x=>x.b);
+  const wrap = document.getElementById('communityContent');
+  if(!wrap) return;
+  if(!scored.length){
+    wrap.innerHTML=`<div class="empty-box"><div class="empty-icon">🔍</div><div class="empty-text">"${q}"에 해당하는 추천 도서가 없어요.</div></div>`;
+    return;
+  }
+  const grid=document.createElement('div');
+  grid.className='book-grid';
+  scored.forEach((b,i)=>{
+    const card=makeCard(b,'user',b.id||String(i));
+    grid.appendChild(card);
+    if(b.cover){const img=card.querySelector('img.cover-img');if(img)img.src=b.cover;}
+    else fetchCover(card.querySelector('.cover-wrap'),b.isbn,b.title);
+  });
+  wrap.innerHTML=`<div style="font-size:.82rem;color:var(--gray);margin-bottom:10px">"${q}" 검색 결과 ${scored.length}건</div>`;
+  wrap.appendChild(grid);
+}
+function resetCommSearch() {
+  const books = _allCommBooks.length ? _allCommBooks : lsGet('recs_'+state.type, []);
+  renderCommunity(books);
+}
+
+async function handleHeart(btn) {
+  const hk=btn.dataset.hk;
+  const hearted=btn.classList.contains('hearted');
+  const countEl=btn.querySelector('.hcnt');
+  const count=parseInt(countEl.textContent)||0;
+  btn.disabled=true;
+  recordParticipation(state.type);
+  try {
+    let nowHearted;
+    if(btn.dataset.src==='user'&&btn.dataset.doc) {
+      nowHearted=await toggleRecHeart(btn.dataset.type,btn.dataset.doc,hearted);
+    } else {
+      nowHearted=!hearted;
+      lsSet(hk,nowHearted);
+      if(btn.dataset.src==='curated'){
+        const ck='htc_'+hk.slice(3);
+        lsSet(ck,Math.max(0,lsGet(ck,0)+(nowHearted?1:-1)));
+      }
+    }
+    btn.classList.toggle('hearted',nowHearted);
+    const newCount = nowHearted ? count+1 : Math.max(0,count-1);
+    btn.innerHTML=`${nowHearted?'❤️':'🤍'}<span class="hcnt">${newCount}</span>`;
+    const statEl=document.getElementById('statHearts');
+    if(statEl){
+      const commBooks = lsGet('recs_'+state.type, []);
+      statEl.textContent = calcTotalHearts(state.type, commBooks);
+    }
+  } finally { btn.disabled=false; }
+}
+
+let _srchBooks=[], _srchPage=0, _srchFilter='all', _srchQuery='';
+const SRCH_PER_PAGE=5;
+
+const FILTER_LABELS = {all:'전체', title:'제목', author:'저자', publisher:'출판사'};
+
+function updateSearchPlaceholder() {
+  const filter = document.getElementById('srchFilter')?.value || 'all';
+  const ph = {all:'책 제목, 저자, 출판사 검색', title:'책 제목으로 검색', author:'저자명으로 검색', publisher:'출판사명으로 검색'};
+  const input = document.getElementById('srchInput');
+  if (input) input.placeholder = ph[filter] || ph.all;
+}
+
+async function doSearch() {
+  const q=document.getElementById('srchInput')?.value.trim();
+  const filter=document.getElementById('srchFilter')?.value||'all';
+  if(!q)return;
+  const res=document.getElementById('srchResults');
+  res.innerHTML='<div class="loader"><span></span><span></span><span></span></div>';
+  _srchFilter=filter;
+  _srchQuery=q;
+  window._lastSearchErr='';
+  try {
+    _srchBooks=await searchBooks(q, filter);
+  } catch(e) {
+    _srchBooks=[];
+    window._lastSearchErr=e.message;
+  }
+  _srchPage=0;
+  renderSearchPage();
+}
+
+function renderSearchPage() {
+  const res=document.getElementById('srchResults');
+  res.innerHTML='';
+  if(!_srchBooks.length){
+    const errDetail = window._lastSearchErr ? ` (오류: ${window._lastSearchErr})` : '';
+    res.innerHTML=`<p style="text-align:center;color:#aaa;padding:20px">검색 결과가 없습니다.${errDetail}</p>`;
+    return;
+  }
+  const total=_srchBooks.length;
+  const totalPages=Math.ceil(total/SRCH_PER_PAGE);
+  const start=_srchPage*SRCH_PER_PAGE;
+  const pageBooks=_srchBooks.slice(start,start+SRCH_PER_PAGE);
+
+  // 결과 수 표시
+  const info=document.createElement('p');
+  info.style.cssText='font-size:.8rem;color:#888;margin-bottom:10px';
+  const filterLabel = FILTER_LABELS[_srchFilter] || '전체';
+  info.textContent=`"${_srchQuery}" ${filterLabel} 검색 결과 ${total}건 중 ${start+1}–${Math.min(start+SRCH_PER_PAGE,total)}건`;
+  res.appendChild(info);
+
+  // 책 목록
+  pageBooks.forEach(b=>{
+    const item=document.createElement('div');
+    item.className='s-item';
+    item.innerHTML=`
+      <img class="s-cover" src="${b.cover||''}" alt="${b.title}" onerror="this.style.background='#E8E8D8';this.src=''">
+      <div class="s-info">
+        <div class="s-title">${b.title}</div>
+        <div class="s-author">${b.author}</div>
+        <div class="s-pub">${b.publisher}</div>
+      </div>
+      <button class="add-btn" onclick='selectBook(${JSON.stringify(b).replace(/'/g,"&#39;")},this)'>선택</button>`;
+    res.appendChild(item);
+  });
+
+  // 페이지 번호
+  if(totalPages>1){
+    const pager=document.createElement('div');
+    pager.className='srch-pager';
+    for(let i=0;i<totalPages;i++){
+      const btn=document.createElement('button');
+      btn.className='srch-page-btn'+(i===_srchPage?' active':'');
+      btn.textContent=i+1;
+      btn.onclick=()=>{ _srchPage=i; renderSearchPage(); res.scrollIntoView({behavior:'smooth',block:'start'}); };
+      pager.appendChild(btn);
+    }
+    res.appendChild(pager);
+  }
+}
+
+function selectBook(book, btn) {
+  pendingBook=book;
+  document.querySelectorAll('.add-btn').forEach(b=>{b.textContent='선택';b.disabled=false;});
+  btn.textContent='✔ 선택됨';btn.disabled=true;
+  const form=document.getElementById('recForm');
+  form.style.display='block';
+  document.getElementById('prCover').src=book.cover||'';
+  document.getElementById('prTitle').textContent=book.title;
+  document.getElementById('prAuthor').textContent=book.author;
+  document.getElementById('recTa').value='';
+  form.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+async function submitRec() {
+  if(!pendingBook)return;
+  const review=document.getElementById('recTa').value.trim();
+  const btn=document.getElementById('recSubBtn');
+  btn.disabled=true;btn.textContent='업로드 중…';
+  try {
+    await addRec(state.type,pendingBook,review);
+    showToast('🎉 추천 도서가 커뮤니티에 공유됐어요!');
+    pendingBook=null;
+    document.getElementById('recForm').style.display='none';
+    document.getElementById('srchResults').innerHTML='';
+    document.getElementById('srchInput').value='';
+    switchTab('community');
+    const books = lsGet('recs_'+state.type, []);
+    renderCommunity(books);
+    const users = new Set(books.map(b=>b.userKey)).size;
+    document.getElementById('statBooks').textContent = MBTI_DATA[state.type].books.length + books.length;
+    document.getElementById('statHearts').textContent = calcTotalHearts(state.type, books);
+    document.getElementById('statUsers').textContent = users;
+  } catch(e) { console.error(e); showToast('오류가 발생했습니다. 다시 시도해 주세요.'); }
+  finally { btn.disabled=false;btn.textContent='📤 커뮤니티에 추천하기'; }
+}
+
+async function fetchCover(wrap, isbn, query) {
+  if(!wrap)return;
+  const url=await getCover(query||'',isbn||'');
+  if(!url)return;
+  let img=wrap.querySelector('img.cover-img');
+  if(!img){ img=document.createElement('img');img.className='cover-img';img.alt=query||'';img.onerror=()=>img.style.display='none';wrap.insertBefore(img,wrap.firstChild); }
+  img.src=url;
+  const ph=wrap.querySelector('.cover-ph');if(ph)ph.style.display='none';
+}
+
+/* ══════════════════════════════════════════
+   PAGE: BOOK DETAIL
+   ══════════════════════════════════════════ */
+function openBook(book) { nav('detail',{book:{...book,fromType:state.type}}); }
+
+function renderDetail() {
+  if(revUnsub){revUnsub();revUnsub=null;}
+  const b=state.book||{};
+  const bk=bkey(b.isbn,b.title);
+  const fromType=b.fromType||state.type;
+  const bookKey=b.isbn||b.title||'';
+  const isCurated=(MBTI_DATA[fromType]?.books||[]).some(cb=>(cb.isbn&&cb.isbn===b.isbn)||(cb.title===b.title));
+  let localHearted,localCount;
+  if(isCurated){
+    localHearted=lsGet('ht_'+bookKey,false);
+    localCount=lsGet('htc_'+bookKey,0);
+  } else {
+    localHearted=lsGet('hd_'+bk,false);
+    localCount=lsGet('hdc_'+bk,0);
+  }
+  const d=MBTI_DATA[fromType]||{};
+
+  document.getElementById('pg-detail').innerHTML=`
+  <div class="detail-hero">
+    <div class="detail-cover-wrap" id="dcWrap"><span id="dcPh">📚</span></div>
+    <div>
+      <div class="detail-title">${b.title||'알 수 없는 책'}</div>
+      <div class="detail-author">${b.author||''}</div>
+      <div class="detail-pub">${b.publisher||''}</div>
+      <button class="heart-big${localHearted?' hearted':''}" id="heartBig" onclick="toggleDetailHeart('${bk}',${isCurated},'${bookKey}')">
+        ${localHearted?'❤️':'🤍'} <span id="hdCount">${localCount}</span> 하트
+      </button>
+    </div>
+  </div>
+  <div class="inner">
+    ${b.reason?`<div class="reason-box"><div class="reason-label">💡 이 유형에 추천하는 이유</div><div class="reason-text">${b.reason}</div></div>`:''}
+    <div class="sec-card" style="padding:18px;margin-bottom:18px">
+      <div class="sec-title">🔗 바로가기</div>
+      <div class="link-grid">
+        <a href="${aladinUrl(b.isbn,b.title)}" target="_blank" class="lib-link ll-aladin"><span class="ll-icon">📦</span>알라딘</a>
+        <a href="${googleUrl(b.title,b.author)}" target="_blank" class="lib-link ll-google"><span class="ll-icon">📖</span>구글 북스</a>
+      </div>
+    </div>
+    <div class="sec-card" id="descCard">
+      <div class="sec-title">📋 책 소개</div>
+      <div class="desc-text" id="descText">${b.desc||'불러오는 중…'}</div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-title">💬 독서 후기</div>
+      <div class="rev-form">
+        <div class="rev-form-t">이 책 어떠셨나요? 한줄평을 남겨주세요!</div>
+        <textarea class="rev-ta" id="revInput" placeholder="솔직한 후기를 남겨주세요 😊"></textarea>
+        <button class="rev-sub" id="revSubBtn" onclick="submitRevBtn('${bk}')">후기 남기기</button>
+      </div>
+      <div id="revList"><div class="loader"><span></span><span></span><span></span></div></div>
+    </div>
+    <button class="back-btn" onclick="goBack()">← ${b.fromType||state.type} 방으로 돌아가기</button>
+  </div>`;
+
+  // cover
+  if(b.cover){setCoverDetail(b.cover);}
+  else{getCover((b.title||'')+' '+(b.author||''),b.isbn||'').then(u=>{if(u)setCoverDetail(u);});}
+
+  // desc
+  if(!b.desc){ _loadDesc(b); }
+
+  // reviews
+  revUnsub=subscribeReviews(bk,reviews=>renderRevs(reviews,bk));
+}
+
+async function _loadDesc(b) {
+  const el = document.getElementById('descText');
+  if (!el) return;
+  const q = (b.title||'') + ' ' + (b.author||'');
+
+  /* 1순위: Aladin ItemLookUp (ISBN) */
+  let desc = '';
+  if (b.isbn) desc = await _aladinDescByIsbn(b.isbn);
+
+  /* 2순위: Aladin ItemSearch (키워드) */
+  if (!desc) desc = await _aladinDescByQuery(q);
+
+  /* 3순위: Google Books */
+  if (!desc) {
+    try {
+      const r = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(q)}&langRestrict=ko&maxResults=3`);
+      const d = await r.json();
+      for (const item of (d.items||[])) {
+        const t = item.volumeInfo?.description;
+        if (t && t.length > 30) { desc = t; break; }
+      }
+    } catch {}
+  }
+
+  if (!el.isConnected) return;
+  el.textContent = desc ? desc.slice(0,500)+(desc.length>500?'…':'') : '책 소개 정보가 없습니다.';
+}
+
+function _aladinDescByIsbn(isbn) {
+  return new Promise(resolve => {
+    const cb = '_adi_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+    const s = document.createElement('script');
+    const t = setTimeout(()=>{ resolve(''); s.remove(); try{delete window[cb];}catch{} }, 5000);
+    window[cb] = data => {
+      clearTimeout(t); s.remove(); try{delete window[cb];}catch{}
+      resolve(data?.item?.[0]?.description||'');
+    };
+    s.onerror = ()=>{ clearTimeout(t); resolve(''); try{delete window[cb];}catch{} };
+    s.src = `https://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${ALADIN_KEY}&itemIdType=ISBN13&ItemId=${isbn}&output=js&Version=20131101&OptResult=description&CallBack=${cb}`;
+    document.head.appendChild(s);
+  });
+}
+
+function _aladinDescByQuery(q) {
+  return new Promise(resolve => {
+    const cb = '_adq_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);
+    const s = document.createElement('script');
+    const t = setTimeout(()=>{ resolve(''); s.remove(); try{delete window[cb];}catch{} }, 5000);
+    window[cb] = data => {
+      clearTimeout(t); s.remove(); try{delete window[cb];}catch{}
+      resolve(data?.item?.[0]?.description||'');
+    };
+    s.onerror = ()=>{ clearTimeout(t); resolve(''); try{delete window[cb];}catch{} };
+    s.src = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${ALADIN_KEY}&Query=${encodeURIComponent(q)}&QueryType=Keyword&MaxResults=1&start=1&SearchTarget=Book&output=js&Version=20131101&CallBack=${cb}`;
+    document.head.appendChild(s);
+  });
+}
+
+function setCoverDetail(url) {
+  const wrap=document.getElementById('dcWrap');if(!wrap)return;
+  const img=document.createElement('img');img.className='detail-cover';img.src=url;img.alt='cover';
+  img.onerror=()=>img.remove();
+  wrap.insertBefore(img,document.getElementById('dcPh'));
+  document.getElementById('dcPh').style.display='none';
+}
+
+async function toggleDetailHeart(bk, isCurated, bookKey) {
+  const btn=document.getElementById('heartBig');
+  const hearted=btn.classList.contains('hearted');
+  const count=parseInt(document.getElementById('hdCount').textContent)||0;
+  const now=!hearted; const nc=now?count+1:Math.max(0,count-1);
+  if(isCurated===true||isCurated==='true'){
+    lsSet('ht_'+bookKey,now);
+    lsSet('htc_'+bookKey,Math.max(0,lsGet('htc_'+bookKey,0)+(now?1:-1)));
+  } else {
+    lsSet('hd_'+bk,now);lsSet('hdc_'+bk,nc);
+  }
+  btn.className='heart-big'+(now?' hearted':'');
+  btn.innerHTML=`${now?'❤️':'🤍'} <span id="hdCount">${nc}</span> 하트`;
+  recordParticipation(state.type);
+  if(now)showToast('❤️ 하트를 눌렀어요!');
+}
+
+function renderRevs(reviews, bk) {
+  const list=document.getElementById('revList');if(!list)return;
+  if(!reviews.length){list.innerHTML='<p style="text-align:center;color:#aaa;font-size:.86rem;padding:18px 0">아직 후기가 없어요. 첫 번째 후기를 남겨보세요!</p>';return;}
+  list.innerHTML='';
+  reviews.forEach(r=>{
+    const el=document.createElement('div');el.className='rev-item';
+    const col=(MBTI_DATA[r.mbti]||{}).color||'#888';
+    const ds=r.dateStr||(r.createdAt?.toDate?r.createdAt.toDate().toLocaleDateString('ko-KR'):'');
+    el.innerHTML=`<div class="rev-head"><span class="rev-mbti" style="background:${col}">${r.mbti}</span><span class="rev-date">${ds}</span></div><div class="rev-text">${r.text}</div>`;
+    list.appendChild(el);
+  });
+}
+
+async function submitRevBtn(bk) {
+  const text=document.getElementById('revInput')?.value.trim();
+  if(!text){showToast('후기를 입력해주세요!');return;}
+  const btn=document.getElementById('revSubBtn');
+  btn.disabled=true;btn.textContent='저장 중…';
+  const myMbti=lsGet('myMBTI',state.type||'MBTI');
+  try{await addReview(bk,text,myMbti);document.getElementById('revInput').value='';showToast('✍️ 후기가 등록됐어요!');}
+  catch{showToast('오류가 발생했습니다.');}
+  finally{btn.disabled=false;btn.textContent='후기 남기기';}
+}
+
+/* ══════════════════════════════════════════
+   PAGE: SETUP
+   ══════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════
+   PARTICIPANT TRACKING
+   ══════════════════════════════════════════ */
+function recordParticipation(type) {
+  const key='participants_'+type;
+  const list=lsGet(key,[]);
+  const uid=getUserKey();
+  if(!list.includes(uid)){list.push(uid);lsSet(key,list);}
+}
+function getParticipantCount(type){return lsGet('participants_'+type,[]).length;}
+function _backfillParticipants(){
+  Object.keys(MBTI_DATA).forEach(type=>{
+    const recs=lsGet('recs_'+type,[]);
+    recs.forEach(r=>{
+      if(!r.userKey)return;
+      const key='participants_'+type;
+      const list=lsGet(key,[]);
+      if(!list.includes(r.userKey)){list.push(r.userKey);lsSet(key,list);}
+    });
+  });
+}
+function _participantBadge(type){
+  const n=getParticipantCount(type);
+  let style;
+  if(n===0) style='background:#E0E0E0;color:#999';
+  else if(n<5) style='background:rgba(0,0,0,.45);color:#fff';
+  else style='background:linear-gradient(135deg,#FF6B9D,#C44569);color:#fff;box-shadow:0 2px 6px rgba(255,107,157,.4)';
+  return `<div class="type-participants" style="${style}">👥 ${n}명</div>`;
+}
+
+/* ══════════════════════════════════════════
+   ONLINE TRACKER (세션 기반 실시간 접속자)
+   ══════════════════════════════════════════ */
+const _PRESENCE_SID = Math.random().toString(36).slice(2);
+const _PRESENCE_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+
+async function _pingPresence() {
+  try {
+    const r = await fetch(`${_PRESENCE_BASE}/api/presence/ping?sid=${_PRESENCE_SID}`, {method:'POST'});
+    if (!r.ok) return;
+    const d = await r.json();
+    const el = document.getElementById('onlineCount');
+    if (el) el.textContent = d.online;
+  } catch {}
+}
+function startOnlineTracker() {
+  _pingPresence();
+  setInterval(_pingPresence, 60000);
+}
+
+/* ══════════════════════════════════════════
+   UTILS
+   ══════════════════════════════════════════ */
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+/* ══════════════════════════════════════════
+   PHOTO SHARE FEATURE
+   ══════════════════════════════════════════ */
+window._necutPhotos=[null,null,null,null];
+window._necutSlotMeta=[null,null,null,null]; // {type:'photo'|'book', title?}
+window._necutBookSlot=-1;
+
+function _applySlot(idx, imgSrc, meta){
+  window._necutPhotos[idx]=imgSrc;
+  window._necutSlotMeta[idx]=meta;
+  const img=document.getElementById('uploadImg'+idx);
+  const ph=document.getElementById('uploadPh'+idx);
+  const rs=document.getElementById('uploadResel'+idx);
+  if(img){img.src=imgSrc;img.style.display='block';}
+  if(ph)ph.style.display='none';
+  if(rs)rs.style.display='flex';
+}
+
+function handlePhotoUpload(idx,input){
+  const file=input.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    _applySlot(idx, e.target.result, {type:'photo'});
+    input.value='';
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── 책표지 검색 모달 ── */
+function openBookCoverSearch(idx){
+  window._necutBookSlot=idx;
+  const lbl=document.getElementById('bookCoverSlotLabel');
+  if(lbl)lbl.textContent=idx+1;
+  const res=document.getElementById('necutBookResults');
+  if(res)res.innerHTML='';
+  const inp=document.getElementById('necutBookInput');
+  if(inp)inp.value='';
+  document.getElementById('bookCoverModal').style.display='flex';
+  setTimeout(()=>inp&&inp.focus(),120);
+}
+
+function closeBookCoverSearch(){
+  document.getElementById('bookCoverModal').style.display='none';
+}
+
+async function doNecutBookSearch(){
+  const q=(document.getElementById('necutBookInput')?.value||'').trim();
+  if(!q)return;
+  const res=document.getElementById('necutBookResults');
+  res.innerHTML='<div class="loader"><span></span><span></span><span></span></div>';
+  const books=await searchBooks(q,'all');
+  res.innerHTML='';
+  if(!books.length){
+    res.innerHTML='<p style="text-align:center;color:#aaa;padding:18px 0">검색 결과가 없습니다.</p>';
+    return;
+  }
+  books.slice(0,15).forEach(b=>{
+    const item=document.createElement('div');
+    item.className='cover-srch-item';
+    item.innerHTML=`<img class="cover-srch-img" src="${b.cover||''}" alt="${b.title}" onerror="this.style.background='#E8E8D8'">
+      <div class="cover-srch-info">
+        <div class="cover-srch-title">${b.title}</div>
+        <div class="cover-srch-author">${b.author||''}</div>
+      </div>
+      <button class="cover-add-btn" id="caBtn_${b.isbn||b.title.slice(0,8).replace(/\s/g,'_')}">선택</button>`;
+    const btn=item.querySelector('.cover-add-btn');
+    btn.onclick=()=>selectBookCover(b.cover||'', b.title, btn);
+    res.appendChild(item);
+  });
+}
+
+function selectBookCover(coverUrl, title, btn){
+  const idx=window._necutBookSlot;
+  if(idx<0||idx>3)return;
+  if(!coverUrl){showToast('표지 이미지가 없는 책입니다.');return;}
+  _applySlot(idx, coverUrl, {type:'book', title});
+  closeBookCoverSearch();
+  showToast(`📚 책 표지가 사진 ${idx+1}에 적용됐어요!`);
+}
+
+function _loadImgEl(src){
+  return new Promise((res,rej)=>{
+    const img=new Image();
+    img.crossOrigin='anonymous';
+    img.onload=()=>res(img);
+    img.onerror=()=>rej(new Error('img load fail'));
+    img.src=src;
+  });
+}
+
+function _roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+function _wrapText(ctx,text,x,y,maxW,lineH){
+  let line='';
+  for(let n=0;n<text.length;n++){
+    const t=line+text[n];
+    if(ctx.measureText(t).width>maxW&&n>0){ctx.fillText(line,x,y);line=text[n];y+=lineH;}
+    else line=t;
+  }
+  ctx.fillText(line,x,y);
+  return y;
+}
+
+async function composeNecut(){
+  document.getElementById('photoPreview').style.display='none';
+  const d=MBTI_DATA[state.type];
+  const SZ=800,CELL=SZ/2,HDR=80,FTR=70;
+  const canvas=document.getElementById('photoCanvas');
+  canvas.width=SZ; canvas.height=SZ+HDR+FTR;
+  const ctx=canvas.getContext('2d');
+
+  ctx.fillStyle='#1a1a1a'; ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // header
+  ctx.fillStyle=d.color; ctx.fillRect(0,0,SZ,HDR);
+  ctx.fillStyle='#fff';
+  ctx.font='bold 26px "Noto Sans KR",sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(`${d.emoji} ${state.type} ${d.name}`,SZ/2,HDR/2);
+
+  const positions=[{x:0,y:HDR},{x:CELL,y:HDR},{x:0,y:HDR+CELL},{x:CELL,y:HDR+CELL}];
+  for(let i=0;i<4;i++){
+    const {x,y}=positions[i];
+    const src=window._necutPhotos[i];
+    if(src){
+      try{
+        const img=await _loadImgEl(src);
+        ctx.save();
+        _roundRectPath(ctx,x+4,y+4,CELL-8,CELL-8,10);
+        ctx.clip();
+        const ratio=Math.max(CELL/img.width,CELL/img.height);
+        const dw=img.width*ratio,dh=img.height*ratio;
+        ctx.drawImage(img,x+(CELL-dw)/2,y+(CELL-dh)/2,dw,dh);
+        ctx.restore();
+      }catch{
+        const meta=window._necutSlotMeta[i];
+        if(meta?.type==='book'){
+          ctx.fillStyle='#F5F0FF';
+          _roundRectPath(ctx,x+4,y+4,CELL-8,CELL-8,10); ctx.fill();
+          ctx.font='38px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText('📚',x+CELL/2,y+CELL/2-22);
+          ctx.fillStyle=d.color; ctx.font='bold 13px "Noto Sans KR",sans-serif';
+          _wrapText(ctx,(meta.title||'').slice(0,16),x+CELL/2,y+CELL/2+16,CELL-24,18);
+        } else {
+          ctx.fillStyle='#333';
+          _roundRectPath(ctx,x+4,y+4,CELL-8,CELL-8,10); ctx.fill();
+          ctx.fillStyle='#888'; ctx.font='48px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.fillText('📷',x+CELL/2,y+CELL/2);
+        }
+      }
+    } else {
+      ctx.fillStyle='#2a2a2a';
+      _roundRectPath(ctx,x+4,y+4,CELL-8,CELL-8,10); ctx.fill();
+      ctx.fillStyle='#555'; ctx.font='44px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText('📷',x+CELL/2,y+CELL/2);
+      ctx.fillStyle='#444'; ctx.font='16px "Noto Sans KR",sans-serif';
+      ctx.fillText('사진 '+(i+1),x+CELL/2,y+CELL/2+48);
+    }
+  }
+
+  // dividers
+  ctx.strokeStyle='#1a1a1a'; ctx.lineWidth=8;
+  ctx.beginPath(); ctx.moveTo(CELL,HDR); ctx.lineTo(CELL,HDR+SZ); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0,HDR+CELL); ctx.lineTo(SZ,HDR+CELL); ctx.stroke();
+
+  // footer
+  ctx.fillStyle=d.color; ctx.fillRect(0,HDR+SZ,SZ,FTR);
+  ctx.fillStyle='#fff'; ctx.font='bold 17px "Noto Sans KR",sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('MBTI Book Talk 📚',SZ/2,HDR+SZ+FTR/2);
+
+  document.getElementById('photoPreview').style.display='block';
+  document.getElementById('photoPreview').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function downloadComposed(){
+  const canvas=document.getElementById('photoCanvas');
+  try{
+    const a=document.createElement('a');
+    a.download=`MBTI_${state.type}_네컷.jpg`;
+    a.href=canvas.toDataURL('image/jpeg',0.92);
+    a.click();
+  }catch{
+    showToast('보안 정책으로 저장이 제한됩니다. 스크린샷을 이용해주세요 📱');
+  }
+}
+
+function shareComposed(){
+  const canvas=document.getElementById('photoCanvas');
+  if(navigator.share && canvas.toBlob){
+    canvas.toBlob(blob=>{
+      if(!blob){downloadComposed();return;}
+      const file=new File([blob],`MBTI_${state.type}.jpg`,{type:'image/jpeg'});
+      navigator.share({title:`MBTI Book Talk — ${state.type}`,files:[file]})
+        .then(()=>showToast('공유했어요! 📸'))
+        .catch(()=>downloadComposed());
+    },'image/jpeg',0.92);
+  } else {
+    downloadComposed();
+    showToast('이미지를 저장했어요! 직접 공유해 주세요 📸');
+  }
+}
+
+/* ══════════════════════════════════════════
+   INIT
+   ══════════════════════════════════════════ */
+state.type=lsGet('myMBTI','INTJ');
+_backfillParticipants();
+startOnlineTracker();
+renderPage();
+</script>
+</body>
+</html>

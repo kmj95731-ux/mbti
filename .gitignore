@@ -1,0 +1,7 @@
+server/.env
+__pycache__/
+**/__pycache__/
+*.pyc
+.DS_Store
+server/nl_qa.db
+server/tfidf_cache.pkl
