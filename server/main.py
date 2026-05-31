@@ -18,7 +18,7 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 from .database import init_db, count_items, seed_from_json as _seed, get_conn as _get_conn
 from .database import count_items as _count_items
 from .crawler import crawl_state, run_crawl
-from .search_engine import hybrid_search, build_index, invalidate_cache
+from .search_engine import hybrid_search, build_index, invalidate_cache, _normalize_ko_query, _KW_STOPWORDS
 from .search_engine import build_index as _build_index
 from .claude_chat import get_librarian_response
 
@@ -468,6 +468,19 @@ async def analyze(
     }
 
 
+def _extract_book_keywords(query: str) -> str:
+    """자연어 쿼리에서 도서 검색용 핵심 키워드 추출.
+
+    '힘들때 위로가 되는 책 추천해줘' → '힘들 위로'
+    2단어 이하 짧은 쿼리는 그대로 반환.
+    """
+    if len(query.split()) <= 2:
+        return query
+    normalized = _normalize_ko_query(query)
+    keywords = [w for w in normalized.split() if len(w) >= 2 and w not in _KW_STOPWORDS]
+    return " ".join(keywords) if keywords else query
+
+
 # ── 도서 검색 프록시 (알라딘 + Google Books) ─────────────────
 @app.get("/api/book-search")
 async def book_search_proxy(
@@ -479,16 +492,18 @@ async def book_search_proxy(
     qt = qt_map.get(filter_type, "Keyword")
 
     if filter_type in qt_map:
-        aladin_calls = [_aladin_search(q, qt, 1, 50)]
+        effective_q = q
+        aladin_calls = [_aladin_search(effective_q, qt, 1, 50)]
         google_q = {"title": f"intitle:{q}", "author": f"inauthor:{q}", "publisher": f"inpublisher:{q}"}[filter_type]
     else:
+        effective_q = _extract_book_keywords(q)
         aladin_calls = [
-            _aladin_search(q, "Title",   1,  50),
-            _aladin_search(q, "Title",  51,  50),
-            _aladin_search(q, "Keyword", 1,  50),
-            _aladin_search(q, "Keyword", 51, 50),
+            _aladin_search(effective_q, "Title",   1,  50),
+            _aladin_search(effective_q, "Title",  51,  50),
+            _aladin_search(effective_q, "Keyword", 1,  50),
+            _aladin_search(effective_q, "Keyword", 51, 50),
         ]
-        google_q = q
+        google_q = effective_q
 
     results = await asyncio.gather(*aladin_calls, _google_books_search(google_q))
     seen, books = set(), []
