@@ -8,129 +8,286 @@ pinned: false
 ---
 
 # 📚 MBTI Book Talk
+### Claude AI로 제작한 MBTI 성격 유형별 도서 추천 웹앱
 
-> 같은 MBTI끼리 함께 나누는 책이야기 — MBTI 유형별 도서 추천 커뮤니티 웹앱
-
----
-
-## 🚀 바로 열기
-
-```
-index.html  ←  이 파일 하나로 전체 앱이 실행됩니다
-```
-
-브라우저에서 `index.html`을 열거나, GitHub Pages로 배포하면 바로 사용 가능합니다.
+> **Live** → [minjin1-mbti.hf.space](https://minjin1-mbti.hf.space) &nbsp;|&nbsp; **GitHub** → [github.com/kmj95731-ux/mbti](https://github.com/kmj95731-ux/mbti)
 
 ---
 
-## 📁 파일 구조
+## 🤖 Claude AI로 만들어진 앱
 
-```
-mbti-book-talk/
-├── index.html      ← 전체 앱 (SPA, 단일 파일)
-├── js/
-│   └── data.js     ← 16종 MBTI 데이터 + 큐레이션 도서 (2019–2024)
-└── README.md
-```
+이 웹앱은 **Claude Code** (Anthropic의 AI 개발 도구)를 사용하여 처음부터 끝까지 제작되었습니다.
 
----
-
-## ✨ 주요 기능
-
-| 기능 | 설명 |
+| 항목 | 내용 |
 |------|------|
-| MBTI 검사 | Gemini AI 검사 링크 연결 |
-| 유형 선택 | 16가지 MBTI 유형 직접 선택 |
-| 큐레이션 도서 | 각 유형 특성 기반 최신 도서 추천 (선정 근거 포함) |
-| 커뮤니티 추천 | 같은 유형 사람들끼리 도서 추천 + 한줄평 |
-| 실시간 공유 | Firebase Firestore 연동 시 모든 사용자가 실시간 공유 |
-| 하트 투표 | 마음에 드는 추천에 하트 |
-| 도서 정보 | 알라딘 API + Google Books로 표지·정보 자동 로딩 |
-| 도서관 링크 | 알라딘 구매 / 전북대 도서관 / Google Books 바로가기 |
-| 독서 후기 | MBTI 뱃지와 함께 후기 남기기 |
+| 개발 도구 | Claude Code CLI (`claude-sonnet-4-6` 모델) |
+| 개발 방식 | 자연어로 기능을 설명 → Claude가 코드 작성·수정·디버깅 수행 |
+| 테스트 | Playwright 브라우저 자동화 테스트도 Claude가 직접 작성 및 실행 |
+| 배포 | GitHub → HuggingFace Spaces 자동 동기화 (GitHub Actions) |
 
 ---
 
-## 🔥 Firebase 설정 (커뮤니티 공유 활성화)
+## 🏗️ 시스템 아키텍처
 
-> 설정 없이도 로컬 모드로 동작합니다. 다른 사람과 실시간 공유하려면 아래 설정이 필요합니다.
-
-### 1단계 — Firebase 프로젝트 생성
-[console.firebase.google.com](https://console.firebase.google.com) → 새 프로젝트 생성
-
-### 2단계 — Firestore 활성화
-Firestore Database → 데이터베이스 만들기 → **asia-northeast3(서울)** → 테스트 모드
-
-### 3단계 — 웹 앱 등록 후 설정 복사
-프로젝트 개요 → `</>` 아이콘 → 앱 등록 → `firebaseConfig` 복사
-
-### 4단계 — index.html 상단 수정
-
-`index.html` 맨 위 스크립트에서 아래 부분을 찾아 값을 교체:
-
-```javascript
-const FIREBASE_CONFIG = {
-  apiKey:            "여기에_apiKey",      // ← Firebase에서 복사한 값으로 교체
-  authDomain:        "여기에_authDomain",
-  projectId:         "여기에_projectId",
-  storageBucket:     "여기에_storageBucket",
-  messagingSenderId: "여기에_messagingSenderId",
-  appId:             "여기에_appId"
-};
+```
+┌──────────────────────────────────────────────────────────┐
+│                      사용자 브라우저                        │
+│               index.html  (단일 페이지 앱)                  │
+│    MBTI 검사 / 도서검색 / 큐레이션 / 사서 Q&A              │
+└──────────────────────┬───────────────────────────────────┘
+                       │  HTTP API
+┌──────────────────────▼───────────────────────────────────┐
+│              FastAPI 서버  (Python, 포트 7860)              │
+│                                                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌────────────────┐  │
+│  │ search_      │  │ semantic_    │  │  claude_       │  │
+│  │ engine.py    │  │ engine.py    │  │  chat.py       │  │
+│  │ (하이브리드)  │  │ (임베딩)     │  │  (AI 사서)     │  │
+│  └──────┬───────┘  └──────┬───────┘  └───────┬────────┘  │
+│         └─────────────────┴──────────────────┘            │
+│                            │                               │
+│         ┌──────────────────▼──────────────────┐           │
+│         │      SQLite DB  (사서 Q&A 5,905건)   │           │
+│         └─────────────────────────────────────┘           │
+└──────────────────────┬───────────────────────────────────┘
+                       │  외부 API 연동
+        ┌──────────────┼──────────────────┐
+        ▼              ▼                  ▼
+  국립중앙도서관     알라딘 TTB        Google Books
+   Open API          도서 검색          도서 검색
+  (사서 Q&A DB)    (표지·메타데이터)  (보조 검색)
 ```
 
-### Firestore 보안 규칙 (테스트용)
-Firebase 콘솔 → Firestore → 규칙 탭:
+---
+
+## ✨ 주요 기능 4가지
+
+### 1. 🔍 MBTI 검사
+- 20문항 성격 유형 검사 → MBTI 16가지 유형 결정
+- 결과에 따라 맞춤 도서 큐레이션 페이지로 자동 이동
+
+### 2. 👥 MBTI별 도서 커뮤니티 방
+- 16개 유형별 전용 방 운영
+- 도서 검색 → 추천글 작성 → 실시간 커뮤니티 공유
+- 큐레이션 도서 + 사용자 추천 도서 통합 표시
+
+### 3. 🏛️ 주제별 도서 큐레이션
+- 국립중앙도서관 Open API 연동
+- **자연어 검색 지원** → 핵심 키워드 자동 추출 → 도서 검색
+- KDC(한국십진분류법) 자동 분류 표시
+
+### 4. 💬 사서에게 물어보세요
+- 국립중앙도서관 사서 Q&A 데이터 **5,905건** 기반 RAG 검색
+- 자연어 질문 → 관련 Q&A 검색 → 답변 생성
+- 참고 출처 카드 함께 제공
+
+---
+
+## 🔎 핵심 로직 ① 자연어 키워드 추출
+
+자연어 문장을 그대로 도서 API에 보내면 결과가 0건 → **키워드 자동 추출** 로직 적용
+
+### 처리 흐름
+
 ```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
-    }
-  }
+입력: "힘들때 위로가 되는 책 추천해줘"
+        │
+        ▼
+① 어미·조사 제거
+   힘들때 → 힘들 (때 제거)
+   위로가 → 위로 (가 제거)
+   추천해줘 → 추천 (해줘 제거) → 노이즈어 → 삭제
+        │
+        ▼
+② 노이즈어 필터 (책, 추천, 읽기, 좋은, 싶을, 찾고 등)
+   "되는", "책", "추천" 제거
+        │
+        ▼
+출력: "힘들 위로"  ← 이 키워드로 알라딘 API 검색
+```
+
+### MBTI 유형 코드 처리
+
+```
+입력: "MBTI INFP에게 추천하는 소설"
+        │
+        ▼
+INFP, INTJ, ENFP 등 16가지 유형 코드 감지
+        │
+        ▼
+유형 코드 → "MBTI" 로 통합
+        │
+        ▼
+출력: "MBTI 소설"  ← 알라딘에 실제 책이 있는 검색어
+```
+
+### 적용 범위
+
+| 섹션 | 자연어 지원 |
+|------|------------|
+| 도서검색 (추천하기 탭) | ✅ |
+| 주제별 도서 큐레이션 | ✅ |
+| 사서에게 물어보세요 | ✅ (하이브리드 검색으로 처리) |
+
+---
+
+## 🔎 핵심 로직 ② 하이브리드 검색 (사서 Q&A)
+
+두 가지 검색 방식을 결합하여 정확도를 높임
+
+```
+사용자 질문
+     │
+     ├──────────────────────────────┐
+     ▼                              ▼
+ 벡터 검색                      키워드 검색
+ (시맨틱 임베딩)                (BM25 알고리즘)
+                                   
+ ko-sroberta 모델               SQLite FTS5
+ → 의미가 비슷한 Q&A 탐색       → 단어가 일치하는 Q&A 탐색
+ 예) "슬플 때" ≈ "우울할 때"    예) "판타지" = "판타지"
+     │                              │
+     └──────────────┬───────────────┘
+                    ▼
+          RRF (순위 융합 알고리즘)
+          두 결과의 순위를 통합·정규화
+                    │
+                    ▼
+          동적 가중치 적용
+```
+
+### 동적 가중치
+
+쿼리 길이와 검색 엔진 종류에 따라 자동으로 비중 조정
+
+| 엔진 | 쿼리 | 벡터 | 키워드 |
+|------|------|------|--------|
+| 시맨틱 | 1~2단어 (`판타지`) | 0.40 | **0.60** |
+| 시맨틱 | 3~4단어 (`자기계발 책 추천`) | 0.55 | 0.45 |
+| 시맨틱 | 5단어+ (`힘들 때 위로가 되는 소설`) | **0.70** | 0.30 |
+| TF-IDF 폴백 | 1~2단어 | 0.30 | **0.70** |
+| TF-IDF 폴백 | 5단어+ | 0.50 | 0.50 |
+
+> **왜 동적 가중치인가?**  
+> 짧은 단어 → 정확한 단어 매칭이 유리 (키워드 우세)  
+> 긴 자연어 문장 → 의미 파악이 중요 (벡터 우세)  
+> TF-IDF 폴백 시 → 의미 파악 약화, 키워드를 더 신뢰
+
+---
+
+## 📥 Input / 📤 Output 상세
+
+### 도서검색 API (`/api/book-search`)
+
+```
+Input  : query = "우울할 때 읽으면 좋은 책"
+           ↓  _extract_book_keywords()
+Processing: "우울할" → "우울", "읽으면"·"좋은"·"책" 제거
+           ↓
+Effective Query: "우울"
+           ↓  알라딘 API + Google Books API 병렬 호출
+Output : [
+  { title, author, publisher, cover_url, isbn },
+  ...
+]
+```
+
+### 사서 Q&A API (`/api/librarian/ask`)
+
+```
+Input  : query = "힘들 때 위로가 되는 책 추천해줘"
+           ↓  hybrid_search()
+Processing:
+  1. 벡터 검색 → 상위 16건 후보
+  2. 키워드 검색 → 상위 16건 후보
+  3. RRF 융합 → 동적 가중치(0.70:0.30) 적용
+  4. 상위 8건 선택
+           ↓  get_librarian_response()
+Output : {
+  response: "사서 답변 텍스트",
+  sources: [ Q&A 출처 카드 8건 ],
+  vector_engine: "tfidf",
+  weights: { vector: 0.70, keyword: 0.30 }
+}
+```
+
+### 큐레이션 API (`/api/analyze`)
+
+```
+Input  : keyword = "역사를 쉽게 이해할 수 있는 책 알려줘"
+           ↓  _extract_book_keywords()
+Effective: "역사 이해"
+           ↓  국립중앙도서관 Open API
+Output : {
+  keyword: "역사를 쉽게...",  ← 표시용 원본 유지
+  kdc: { code, name, color },  ← 자동 KDC 분류
+  pagination: { total: 2587, ... },
+  search_results: [ 도서 목록 ]
 }
 ```
 
 ---
 
-## 🌐 GitHub Pages 배포
+## 🛠️ 기술 스택
 
-```bash
-# 1. GitHub 저장소 생성 후 업로드
-# 2. 저장소 Settings → Pages → Branch: main → Save
-# 3. https://{username}.github.io/{repo-name} 으로 접속
+| 구분 | 기술 |
+|------|------|
+| **프론트엔드** | HTML5 / CSS3 / Vanilla JS (단일 파일 SPA) |
+| **백엔드** | Python 3.11 / FastAPI |
+| **벡터 검색** | `jhgan/ko-sroberta-multitask` (한국어 시맨틱 임베딩) |
+| **키워드 검색** | SQLite FTS5 / BM25 |
+| **TF-IDF 폴백** | scikit-learn TfidfVectorizer (word 1~2 gram) |
+| **외부 API** | 국립중앙도서관 Open API / 알라딘 TTB / Google Books |
+| **배포** | HuggingFace Spaces (Docker 컨테이너) |
+| **CI/CD** | GitHub Actions |
+
+---
+
+## 📊 데이터 현황
+
+| 항목 | 수치 |
+|------|------|
+| 사서 Q&A DB | **5,905건** (국립중앙도서관) |
+| MBTI 큐레이션 도서 | 16개 유형 × 다수 |
+| 연동 외부 도서 DB | 알라딘 + Google Books |
+
+---
+
+## 🚀 배포 구조
+
+```
+로컬 수정
+   │
+   ├─ git push origin master ─→ GitHub (소스 보관)
+   │                                │
+   │                         GitHub Actions
+   │                                │
+   └─ git push hf HEAD:main ──→ HuggingFace Spaces
+                                    │
+                              Docker 빌드 & 배포
+                                    │
+                            https://minjin1-mbti.hf.space
 ```
 
 ---
 
-## 📖 도서 선정 기준
+## 📅 개발 이력
 
-각 MBTI 유형의 **핵심 인지 기능과 가치관**에 맞는 책을 선정했습니다.
-
-- **NT(분석가)**: 시스템 사고·원칙·이론 탐구 관련 도서
-- **NF(외교관)**: 의미·공감·이상·감성 문학
-- **SJ(관리자)**: 체계·습관·검증된 원칙·재정 관리
-- **SP(탐험가)**: 현실 실행·모험·즉각적 성과·감각적 경험
-
-모든 책에는 해당 유형에 추천하는 구체적인 이유가 표시됩니다.
+| 날짜 | 작업 내용 |
+|------|----------|
+| 2026-05-28 | 초기 앱 구축 및 HuggingFace 배포, GitHub Actions CI/CD 설정 |
+| 2026-05-31 | UI 버튼 수정, 하이브리드 검색 동적 가중치 도입, 전 섹션 자연어 검색 적용 |
 
 ---
 
-## 🔧 사용된 기술
+## ✅ 테스트 결과 (2026-05-31)
 
-- **HTML/CSS/JS** (단일 파일 SPA, 프레임워크 없음)
-- **Firebase Firestore** (실시간 공유 DB)
-- **알라딘 TTB API** (도서 검색, key: ttbpopi07062229002)
-- **Google Books API** (도서 표지 및 소개)
-- **Google Fonts** (Black Han Sans, Noto Sans KR)
+| 테스트 항목 | 방법 | 결과 |
+|------------|------|------|
+| 자연어 도서검색 10개 쿼리 | API 테스트 | **10/10 PASS** |
+| 앱 직접 검색 (도서검색 탭) | Playwright | **7/7 PASS** |
+| 사서에게 물어보세요 | Playwright | **5/5 PASS** |
 
 ---
 
-## 📌 향후 개발 예정
-
-- [ ] 연령별 필터 (어린이/청소년/성인)
-- [ ] 음성 후기 입력
-- [ ] 도서 투표 랭킹
-- [ ] 학교 도서관 소장 여부 연결
-- [ ] 우수 추천 시상 시스템
+*Built with [Claude Code](https://claude.ai/code) — Anthropic*
