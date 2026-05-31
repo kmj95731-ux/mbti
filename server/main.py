@@ -468,16 +468,43 @@ async def analyze(
     }
 
 
+# 도서 검색 전용 추가 노이즈어 (자연어 요청 문장에서 자주 나오는 동사/형용사)
+_BOOK_QUERY_NOISE = {
+    "읽기", "읽으면", "읽는", "읽어도", "읽어요",
+    "좋은", "좋아", "좋겠어", "좋아요",
+    "싶을", "싶어", "싶은", "싶습니다",
+    "찾고", "찾는", "찾아",
+    "키우고", "키우는", "키우기",
+    "이해할", "이해하는", "이해하기",
+    "죽고", "만큼", "정도",
+    "쉽게", "깊게", "많이",
+}
+
+# 영문+한글 혼합 단어 끝의 한글 조사 제거용 (예: INFP에게 → INFP)
+_KO_PARTICLE_RE = re.compile(
+    r"(에게서|으로부터|에서부터|에게|에서|으로|에는|에도|까지|부터|처럼|만큼|보다|이나|이라|라도|의|을|를|은|는|이|가|도|로|에|와|과)$"
+)
+
+
 def _extract_book_keywords(query: str) -> str:
     """자연어 쿼리에서 도서 검색용 핵심 키워드 추출.
 
     '힘들때 위로가 되는 책 추천해줘' → '힘들 위로'
+    '혼자 여행할 때 읽기 좋은 책' → '혼자 여행'
+    'MBTI INFP에게 추천하는 소설' → 'MBTI INFP 소설'
     2단어 이하 짧은 쿼리는 그대로 반환.
     """
     if len(query.split()) <= 2:
         return query
     normalized = _normalize_ko_query(query)
-    keywords = [w for w in normalized.split() if len(w) >= 2 and w not in _KW_STOPWORDS]
+    noise = _KW_STOPWORDS | _BOOK_QUERY_NOISE
+    keywords = []
+    for w in normalized.split():
+        # 영문+한글 혼합 단어의 한글 조사 제거 (INFP에게 → INFP)
+        if re.search(r"[A-Za-z]", w):
+            w = _KO_PARTICLE_RE.sub("", w)
+        if len(w) >= 2 and w not in noise:
+            keywords.append(w)
     return " ".join(keywords) if keywords else query
 
 
