@@ -485,13 +485,21 @@ _KO_PARTICLE_RE = re.compile(
     r"(에게서|으로부터|에서부터|에게|에서|으로|에는|에도|까지|부터|처럼|만큼|보다|이나|이라|라도|의|을|를|은|는|이|가|도|로|에|와|과)$"
 )
 
+# MBTI 16가지 유형 코드 — 알라딘에 개별 유형명으로 된 책이 거의 없으므로 "MBTI"로 통합
+_MBTI_TYPES = {
+    "INTJ", "INTP", "ENTJ", "ENTP",
+    "INFJ", "INFP", "ENFJ", "ENFP",
+    "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+    "ISTP", "ISFP", "ESTP", "ESFP",
+}
+
 
 def _extract_book_keywords(query: str) -> str:
     """자연어 쿼리에서 도서 검색용 핵심 키워드 추출.
 
     '힘들때 위로가 되는 책 추천해줘' → '힘들 위로'
     '혼자 여행할 때 읽기 좋은 책' → '혼자 여행'
-    'MBTI INFP에게 추천하는 소설' → 'MBTI INFP 소설'
+    'MBTI INFP에게 추천하는 소설' → 'MBTI 소설'
     2단어 이하 짧은 쿼리는 그대로 반환.
     """
     if len(query.split()) <= 2:
@@ -499,12 +507,19 @@ def _extract_book_keywords(query: str) -> str:
     normalized = _normalize_ko_query(query)
     noise = _KW_STOPWORDS | _BOOK_QUERY_NOISE
     keywords = []
+    has_mbti_type = False
     for w in normalized.split():
         # 영문+한글 혼합 단어의 한글 조사 제거 (INFP에게 → INFP)
         if re.search(r"[A-Za-z]", w):
             w = _KO_PARTICLE_RE.sub("", w)
+        if w.upper() in _MBTI_TYPES:
+            has_mbti_type = True
+            continue  # 유형 코드는 제거하고 MBTI 키워드로 통합
         if len(w) >= 2 and w not in noise:
             keywords.append(w)
+    # MBTI 유형 코드가 있었으면 "MBTI" 키워드를 맨 앞에 추가
+    if has_mbti_type and "MBTI" not in [k.upper() for k in keywords]:
+        keywords.insert(0, "MBTI")
     return " ".join(keywords) if keywords else query
 
 
