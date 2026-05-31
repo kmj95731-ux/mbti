@@ -438,11 +438,12 @@ async def analyze(
 
     kdc_code, kdc_info = classify_keyword(keyword)
     dr_code = DR_CODE_MAP.get(kdc_code, 11) if kdc_code else 11
+    search_kwd = _extract_book_keywords(keyword)
 
     async with httpx.AsyncClient(timeout=15.0) as client:
         search_resp = await client.get(SEARCH_URL, params={
             "key":       API_KEY,
-            "kwd":       keyword,
+            "kwd":       search_kwd,
             "pageNum":   page,
             "pageSize":  page_size,
             "type_name": "도서",
