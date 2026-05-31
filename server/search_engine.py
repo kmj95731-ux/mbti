@@ -68,9 +68,6 @@ _rec_keys: list[str] = []
 
 CACHE_PATH = Path(__file__).parent / "tfidf_cache.pkl"
 
-# ── 하이브리드 검색 가중치 (과제 명세: 벡터:키워드 = 7:3) ──────────
-VECTOR_WEIGHT = float(os.getenv("HYBRID_VECTOR_WEIGHT", "0.7"))
-KEYWORD_WEIGHT = float(os.getenv("HYBRID_KEYWORD_WEIGHT", "0.3"))
 RRF_K = int(os.getenv("RRF_K", "60"))
 
 # TF-IDF 최소 코사인 유사도 임계값 (기존 0.01 → 0.05 로 상향)
@@ -242,6 +239,29 @@ def _vector_pipeline(query: str, top_k: int) -> tuple:
     return vector_search(query, top_k * 2), "tfidf"
 
 
+def _dynamic_weights(query: str, vec_engine: str) -> tuple[float, float]:
+    """쿼리 길이 + 벡터 엔진 종류에 따라 가중치 동적 결정.
+
+    시맨틱 모델 정상:  단어형(≤2) 0.40:0.60 / 중간(3-4) 0.55:0.45 / 자연어(5+) 0.70:0.30
+    TF-IDF 폴백:       단어형(≤2) 0.30:0.70 / 중간(3-4) 0.40:0.60 / 자연어(5+) 0.50:0.50
+    """
+    words = len(query.split())
+    if vec_engine == "semantic":
+        if words <= 2:
+            return 0.40, 0.60
+        elif words <= 4:
+            return 0.55, 0.45
+        else:
+            return 0.70, 0.30
+    else:  # tfidf fallback
+        if words <= 2:
+            return 0.30, 0.70
+        elif words <= 4:
+            return 0.40, 0.60
+        else:
+            return 0.50, 0.50
+
+
 def hybrid_search(query: str, top_k: int = 8) -> list[dict]:
     """벡터(시맨틱·TF-IDF 자동선택) + 키워드 하이브리드 검색.
 
@@ -250,6 +270,8 @@ def hybrid_search(query: str, top_k: int = 8) -> list[dict]:
     """
     kw_list = keyword_search(query, top_k * 2)
     vec_list, vec_engine = _vector_pipeline(query, top_k)
+    v_w, k_w = _dynamic_weights(query, vec_engine)
+
     kw = {r["rec_key"]: r for r in kw_list}
     vec = {r["rec_key"]: r for r in vec_list}
 
@@ -265,7 +287,7 @@ def hybrid_search(query: str, top_k: int = 8) -> list[dict]:
         base = vec.get(key) or kw.get(key)
         kw_s = kw_rrf.get(key, 0.0)
         vec_s = vec_rrf.get(key, 0.0)
-        combined = VECTOR_WEIGHT * vec_s + KEYWORD_WEIGHT * kw_s
+        combined = v_w * vec_s + k_w * kw_s
         if key in kw and key in vec:
             stype = "hybrid"
         else:
@@ -277,6 +299,8 @@ def hybrid_search(query: str, top_k: int = 8) -> list[dict]:
             "vec_rrf": vec_s,
             "search_type": stype,
             "vector_engine": vec_engine,
+            "vec_weight": v_w,
+            "kw_weight": k_w,
         })
 
 
