@@ -295,7 +295,7 @@ async def librarian_ask(req: AskRequest):
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="질문을 입력해주세요.")
 
-    # 1) 하이브리드 검색 (벡터 7 : 키워드 3, RRF 정규화)
+    # 1) 하이브리드 검색 (동적 가중치, RRF 정규화)
     results = await asyncio.get_event_loop().run_in_executor(
         None, hybrid_search, req.query, req.top_k
     )
@@ -322,8 +322,8 @@ async def librarian_ask(req: AskRequest):
         "norm_score": chat.get("norm_score", 0.0),
         "data4lib_count": chat.get("data4lib_count", 0),
         "weights": {
-            "vector": float(os.getenv("HYBRID_VECTOR_WEIGHT", "0.7")),
-            "keyword": float(os.getenv("HYBRID_KEYWORD_WEIGHT", "0.3")),
+            "vector": results[0].get("vec_weight", 0.0) if results else 0.0,
+            "keyword": results[0].get("kw_weight", 0.0) if results else 0.0,
         },
         "vector_engine": vec_engine,
         "sources": [{
